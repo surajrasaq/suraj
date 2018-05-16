@@ -1,0 +1,247 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\usepackage{ragged2e}}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	\textsc{\LARGE University of Lyon/University Jean Monnet}\\[1.5cm] % University of Lyon/University Jean Monnet
+	\textsc{\Large Master in Machine Learning and Data Mining}\\[0.5cm] % Master In Machine Learning And Data Mining.
+	%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Fabrice  \textsc{Muhlenbach} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ First report submitted on 20-April-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+\section*{Brief Company Introduction}
+\textbf{Novin} is a startup company located at No 7 Rue Pablo Piccaso Siant-etinne, they propose to manufacture a smart walking cane that can detects any unusual situation (fall detection, lower activity, etc.), to be used by the elderly people, the cane is suppose to be able to automatically alerts caregivers and family, without any action from the user, if needed. Although as a startup company they are still on the design phase so their's no data on ground for my analysis, in view of this i have decided to start my study from ground zero and hope to gather some data on my own for the analysis.
+
+ \section*{Introduction}
+ 
+The develop world has witness a tremendous increase in the population of the older people while the developing world are not left behind, quality of living has generally improved worldwide and people now tend to live longer.  It is estimated that this trend might continue to soar with the [1]. 2013 united nation projection of about 2523 billion worldwide population of older people by 2050.
+
+Because people experience aging in a unique way, it makes it very difficult to evaluate the behavioral pattern of the elderly people; however proper knowledge and understanding of the way our senior citizen behave will allow them to continue to live a meaningful life and to make valuable contributions to the society. Generally, socially active elderly people were more likely to avoid disabilities associated to daily activities when compared to people who are not socially active, In addition to this, Unadulterated peace of mind will be guaranteed for the older citizen with the awareness that they are constantly been watch over when in need of emergency. 
+
+\paragraph*{Elderly Activities:}
+
+Activities for daily living (ADL) has been used frequently to refer to the daily living and survival of an individual, but recent usage of this terms are mostly common for the aged people, elderly people are in constant in need of help which may warrant a move to seek help from outsider or ultimately entering a nursing home, now the question arise, how do we evaluate the need of an individual? Do we ask them verbally or understudy their behaviors? Advanced in technology and the use of IoT devices enable us to use latter options. Fast increase in elderly population has necessitate the growing demand in many applications such as health-care systems for monitoring the activities of Daily Living this also has so many advantages and the use of context aware computing systems using smart devices are becoming more popular especially in the field of anomaly detection. Now it is possible to track occurrences of regular behavior in order to monitor the health and find changes in activity patterns and lifestyles [2] for elderly or people with disabilities, ADL monitoring can be used to detect the likely hood of an individual health challenged also used to study the pattern of an individual daily activities.
+
+
+
+\subsection*{Some common and identified behavior in elderly people:}
+
+ Behavior is an individual things which might be difficult to generalize, getting a common ground might be tricky, some study has it that an older person will probably act the same way he or she has been acting when young, but in reality aging affect us differently, sense organs depreciate as we are growing older, hearing loss are frequents, visions can depreciate and others may even experience cloudy taught which is a direct results of memory loss, so its save to conclude that elderly activities are highly connected to health statues of the individual, this is why disability researchers have devoted considerable attention to developing measures that tap practical dimensions of everyday life as a way of measuring a person's physical functioning. The activities of daily living are increasingly being used as the way to measure disability The main conclusion is that ADL estimates will differ for good reasons and that there is no one "right" estimate [3]. Finally, Activities of daily living (ADLs) can be broken down in different categories.
+%\newpage
+\begin{itemize}
+	
+	\item   Sanitation.(Cleaning and regular home choir)
+	
+	\item  Personal Managements.(Ability to be able to organize and manage self)
+	
+	\item   Feeding.(Capability of self feeding without Assistance)
+	
+	\item	Dressing (Ability to be able dress self)
+	
+	\item 	Ambulating. (Ability to be able to move or walk independently)	
+	
+\end{itemize}
+
+%\newpage
+\subsection*{Ambulation and the risk of falling}
+
+The primary aim of this study is to investigate anomaly associated with ambulation in elderly people, in order to properly evaluate this, first we need to study ambulation and risk associated with it, then try to identified and detect anomalies that are connected with them. Ambulation is the ability to move from one position to the other; Ambulation provides an array of physical and mental benefits for the elderly which range from muscle strengthen, relief from pressure and joint and also generally promote the feeling of independent. Some old people are able to ambulate by themselves, while some need assistance from experts, others may require assistive devices such as gait belts, canes, and walkers. 
+
+Mobility has been recognize as a very important factor which can serve as a natural remedies from feeling isolated and greatly reduce anxiety and depression it’s also serve as a form exercise for the elderly, but this does not come without a risk, due to the loss of bone mass or density in elderly people, the tendency to fall is high even with the use of walking sticks, fall has been describe as a leading cause of injuries and possibly death among the senior citizen. It can also lead to fear further falling and ultimately lead to depression.
+
+Recently fall among the elderly has attract a growing interest in the field of artificial intelligence several studies have demonstrated different technique to tackle this menace and possibly provide a visible solution. Falls are defined as accidental events in which a person falls when his or her center of gravity is lost and no effort is made to restore balance or this effort is ineffective; the underlying mechanism could be a seizure, a stroke, a loss of consciousness or non contestable forces.[4], The prevalence of falls is known to increase sharply with age[5], more than 2.1 million falls was reported in 2007 and they were the leading cause of nonfatal injuries among persons 65 yrs or older treated in hospital emergency departments in 2008[6], aside falls other related gait behavior are being understudy especially syncope, stumbling, and abnormal bend down. 
+
+Most cases of fall often go without reporting once a patient has been taken to the hospital people tend to forget about the incidence. Different way of preventing fall has been suggested by experts. We can reduce the possibility of an unfortunate fall by removing any and all items that may present themselves as obstacles and ensure that the patient is wearing appropriate, supportive shoes or footwear, but the question is can we totally prevent fall? The answer is NO but we can device a mean of reporting it and the patients can get the necessary intervention at the appropriate time.
+
+\subsection*{Anomaly Detection and Classifying Fall as an anomaly}
+
+How do we classify fall as anomaly? up till this moments no dataset of real-world fall is available [7], whereas detecting falls and alerting the appropriate quarters will be a plus and sources of confidence building among the elderly, moreover treating fall or no-fall as a binary case might not be too effective due to individual behavioral difference, therefore we need a more robust method in order to be able to properly classify fall. [8]  has classified falls detection in to context-aware systems and wearable devices, the former uses sensors such as cameras, floor sensors, infrared sensors, microphones and pressure sensors deployed in the environment to detect fall while the latter employ the use of miniature electronic devices like accelerometers and gyroscope that are worn by the users. Uses of inexpensive smart devices embedded in cane, wrist-band, neck-lace and shoes can also do this magic.
+
+Motion detection are mostly explore in detecting fall and the use of accelerometer and gyroscope has been used in most of the aforementioned wearable detector, but we still need an intelligent machine learning technique that will analyze data taken from  this devices to identified and segregate ordinary fall from accidental falls. Another challenge is recognizing the recovery moments, yes accidental fall could happen but when the user recover (time range is needed here) and pick up the device back it should be able to feed back the appropriate quarters on the recent recovery. 
+
+Traditional anomaly detection technique could be train to learn fall and also learn  in broad manner the daily activities perform by the elderly people, but actual related data will be better fit for evaluation. Anomaly detection system is vital and must be reliable, effective and efficient, the precision must be accurate because of risk involve when the user is in trouble, it should act promptly by notifying the people involve, type 1 error can be tolerated to some extent but type 2 error should be totally avoided, study have found that the number of false positives per day in real scenarios ranged from  to   [9] depending on the specific technique, showing a decrease in performance with respect to laboratory environments. This number is still not acceptable, which leads to device rejection . Therefore, to improve the level of penetration of these systems it is essential to find a robust Anomaly detector where fall can be treated as a life threaten anomaly which can trigger strong alert.
+
+Fall detection techniques could be split into two main families:  vision based approaches and Non-vision based approaches [10], vision-based fall detection methods are usually rested on information captured from images and videos, while non non-vision based uses sensors such as acceleration and vibration sensors. Most popular fall detection techniques exploit the use of accelerometer data as the main input to discriminate between falls and activities of daily living (ADL). 
+
+Threshold approach based on accelerometer is common, here an alert is triggered according to the pre-define threshold which is measure by peak value during a fall also a more sophisticated and more reliable way is to employ the services of machine learning algorithm [11]  several studies has explore the use of machine learning technique to classified fall,  a particular draw-back to fall classification is that traditional approaches to this problem suffer from a high false positive rate, particularly, when the collected sensor data are biased toward normal data while the abnormal events are rare [5]. we can conclude that classifiers are said to sensitive if they classified anomaly as not normal and specific if ADL is classified as ADL [12].
+
+
+\newpage
+\begin{thebibliography}{9}
+	
+
+	
+\bibitem{who} 
+
+World population ageing, Technical Report, UN World Health
+Organization vol. 374, pp. 1–95, 2013.
+
+
+\bibitem{SARF}
+
+Smart Activity	Recognition	Framework in Ambient Assisted Living
+Conference	Paper September	2016
+DOI:10.15439/2016F132
+
+\bibitem{US Deaprtments of health and human services}
+
+MEASURING THE ACTIVITIES OF DAILY LIVING AMONG THE ELDERLY : A Guide to National Surveys. U.S. Department of Health and Human Services Assistant Secretary for Planning and Evaluation Office of Disability, Aging and Long-Term Care Policy
+
+\bibitem{Fall Prevention}
+
+Fall prevention in the elderly, available at: https://aspe.hhs.gov/pdf-report/measuring-activities-daily-living-among-elderly-guide-national-surveys
+
+\bibitem{Ziere}
+Ziere G, Dieleman JP, Hofman A, et al. Polypharmacy and falls in the middle age and elderly
+population. Br J Clin Pharmacol. 2006; 61:218–23. [PubMed: 16433876]
+
+\bibitem{John T}
+John T. Henry-Sánchez, MD, Jibby E. Kurichi, MPH, Dawei Xie, PhD, Qiang Pan, MA, and
+Margaret G. Stineman, MD. Do Elderly People at More Severe Activity of Daily Living Limitation Stages Fall More?Published in final edited form as: Am J Phys Med Rehabil. 2012 July ; 91(7): 601–610. doi:10.1097/PHM.0b013e31825596af.
+
+
+\bibitem{Daniela Minucci}
+Falls as anomalies? An experimental evaluation using smartphone accelerometer data Daniela Micucci · Marco Mobilio · Paolo Napoletano · Francesco Tisato
+
+
+
+\bibitem{Raul Igual}
+Challenges, issues and trends in fall detection systems Raul Igual,Carlos Medrano and
+Inmaculada Plaza BioMedical Engineering OnLine201312:66
+https://doi.org/10.1186/1475-925X-12-66
+
+\bibitem{Bagala}
+Bagala F, Becker C, Cappello A, Chiari L, Aminian K, et al. (2012) Evaluation of accelerometer-based fall detection algorithms on real-world falls. PLoS ONE 7: e37062
+
+\bibitem{C. Rougier}
+C. Rougier, J. Meunier, A. St-Arnaud, and J. Rousseau, “Robust video surveillance for fall detection based on human shape deformation,” IEEE Transactions on Circuits and Systems for Video Technology, vol. 21, no. 5, pp. 611–622, 2011
+
+\bibitem{Abnormal gait Behaviour}
+ Abnormal Gait Behavior Detection for Elderly Based on Enhanced Wigner-Ville Analysis and Cloud Incremental SVM Learning
+ 
+\bibitem{Chun zhu}
+
+Human Daily Activity Recognition in Robot-assisted Living Using Multi-sensor Fusion
+Chun Zhu and Weihua Sheng,School of Electrical and Computer Engineering
+Oklahoma State University Stillwater, OK, 74078
+
+
+\bibitem{K. Sagawa}
+K. Sagawa, T. Ishihara, A. Ina, and H. Inooka. Classification of human moving patterns using air pressure and acceleration. Industrial Electronics Society, 1998. IECON ’98. Proceedings of the 24th Annual Conference of the IEEE, 2:1214 – 1219, 1998.
+
+\bibitem{Carlos Medrano}
+Detecting Falls as Novelties in Acceleration Patterns Acquired with Smartphones
+Carlos Medrano ,Raul Igual, Inmaculada Plaza,Manuel Castro
+
+\bibitem{Jingyuan Cheng}
+Active Capacitive Sensing: Exploring a New Wearable Sensing Modality for Activity Recognition Jingyuan Cheng, Oliver Amft, and Paul Lukowicz
+
+\bibitem{J. Y Yang}
+J.-Y. Yang, J.-S. Wang, and Y.-P. Chen, “Using acceleration mea-
+surements for activity recognition: An effective learning algorithm for
+constructing neural classifiers,” Pattern recognition letters, vol. 29,
+no. 16, pp. 2213–2220, 2008.	
+	
+\end{thebibliography}
+ 
+
+\end{document}

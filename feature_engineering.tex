@@ -1,0 +1,201 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Fourth report submitted on 07-May-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{Data analysis and feature engineering}
+ 
+Data is an integral part of this studies and accurate data collection is required to guarantee the integrity and cohesion of this device, therefore,in the absence of the real data from the actual end user, ambulation data with step count were gathered and feature engineering and analysis was carried out on the said data. this data were closed enough to the expected data from the cane, and as at today the cane is capable of collecting and transmitting the following data.
+
+\textbf{Activities Data:} is a set activities that are trigger when the user takes the cane, and it stop when the user put the cane down, data in this categories include 
+
+
+\begin{itemize}
+	
+	\item   activity begin time
+	
+	\item  activity end time
+	
+	\item   number of steps	
+	
+\end{itemize}
+
+\textbf{Pauses:} this is sub-activity that happen when no step has been detected for 15 seconds, it automatically stops when a step is detected data in this categories include 
+\begin{itemize}
+	
+	\item   Pause begin time
+	
+	\item   Pause end time	
+	
+\end{itemize}
+
+\textbf{Alerts:} this may be trigged by the occurrence of accidental fall when this occur the cane vibrates and the user has up to 15 seconds to cancel it by picking it up else it will be reported as fall,  data in this categories include
+  
+\begin{itemize}
+	\item   Fall time
+	
+	\item   Fall alert(false when cancel otherwise true)
+\end{itemize}
+
+\subsubsection*{Data description}
+	
+Data description and documentation is necessary to ensure that the researcher, and others who may need to use the data can make sense of the data and understand the processes that have been followed in the collection, processing, and analysis of the data, below are the description of each column and how they are computed.
+
+\begin{itemize}
+	\item  \textbf{ date:} This represent the day column and the day the activity was carried out
+	
+	
+	\item   \textbf{step count:} The total number of steps taken by the user on a particular day.
+	
+	\item \textbf{Pause duration:} The total duration of pause by the user during activity its represented in seconds
+	
+	\item \textbf{mood:} This is an heuristic feature that intend to express the user's feeling on a particular day although this is assume not to be 100 percent accurate but might be interesting to estimate user's daily mood and its computed based on the following algorithm,
+	
+	\begin{lstlisting}
+		walk_duration = []
+		for i in range(0,len(walk_duration)):
+		if walk_duration  >= 3000:
+		mood is 'Excelent Mood'
+		elif walk_duration >= 1000:
+		mood is 'Very good mood'
+		else:
+		mood is 'moody'
+		
+	\end{lstlisting}
+	
+Mood is represented in binary as follow, 100 = moody, 200 = Very good mood	and 300 = Excellent Mood.
+
+\item \textbf{activity begin:} This is the beginning of a daily activity literately when the cane is picked up.
+
+\item \textbf{activity end:} This is the end of a daily activity literately when the cane is finally laid to rest and no activation is detected for the rest of the day.
+	
+\item \textbf{activity length:} This is the length of total activity for the day, it is computed from the sum of the difference of the activity begin and activity end time and converted in to second.
+
+\item \textbf{true falls:} A true falls is detected when the cane loose its equilibrium and balance is not regain in 15 seconds interval.
+
+\item \textbf{walk duration:} This can be referred to as total active moments of the day because it represent total duration of ambulation by the user, its computed by taking the sum of walking duration minus total pause duration.
+
+\item \textbf{tiredness:} This is the rate of exhaustion that maybe experience by the user, tiredness maybe due to fatigue or sign of physical weakness that can be experience as one grow older or it can signify sign of distress, it is computed by taking the ratio of walk duration to the pause duration, it maybe noted that threshold can be set for this and a distress alert can be generated if tiredness is greater than 1 this is definitely not a good sign because it means the user pause more often than doing the actual walking, although this may not be 100 percent accurate because user may pause to talk to people or due to some other reasons.
+
+\item \textbf{speed:} This is the rate of change of velocity of the user, we can estimate how fast the user move and this is computed by taking the ratio step counts to walk duration.
+
+\item \textbf{false falls:} This is a trigger alert when the cane loss its equilibrium but cancel by been pick up withing the 15 seconds time frame.
+
+\item \textbf{true fall time:} This is the time when true falls occur.
+
+\item \textbf{false fall time:} This is the time when false falls occur.
+	
+\end{itemize}
+
+
+
+ 
+
+\end{document}

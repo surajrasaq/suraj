@@ -1,0 +1,141 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ seventh report submitted on 22-May-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{Isolation forest: (Liu and Ting, 2012) }
+ 
+Isolation forest is a relatively new algorithm proposed in 2012 but becoming more and more popular due to its simplicity and efficient usage of memory, The algorithm is based on the fact that anomalies are data points that are the minority and unusual and therefore they can be secluded. This technique is a little bit different from traditional way of isolating anomalies which are mostly based on distance to their neighbor and sometimes density difference, one big advantage of this method is the computation efficiency and its low memory usage, the algorithm has linear time complexity which make it suitable if we decide to implement it directly on the cane.
+
+
+The Isolation Forest algorithm isolates observations by randomly selecting an attribute and then randomly selecting a split value between the upper limit and lower limit of the selected attribute. Then by comparing an observation based on the different an anomaly can be easily spotted but isolating normal observations require more conditions. 
+Isolation is done by creating isolation trees, or random decision trees, the number of splitting required to isolate a sample is equivalent to the path length from the root node to the terminating node. Then, the score is calculated as the path length to isolate the observation, finally when a forest of random trees collectively produce shorter path lengths or particular samples, they are highly likely to be anomalies.
+ 
+\newpage 
+%\subsubsection*{Visualization}
+
+\begin{figure}
+
+		\centering
+		\includegraphics[width=\linewidth]{anomaly_isolated.png}
+		\caption{Anomaly Detection with I-forest }
+	
+\end{figure}
+
+\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{new_test_data_isolated.png}
+		\caption{ Shows I-forest with new test-data (note the anomaly in white).}
+	
+\end{figure}
+
+ 	
+
+\end{document}

@@ -1,0 +1,370 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/images/}}
+\author[*]{Abdulrasaq, Surajudeen.}
+\author[**]{Zwiggelaar, Reyer.}
+\affil[*]{Center for Innovative Technology, Kwara State University, Nigeria, surajrasaq@gmail.com}
+\affil[**]{Department of Computer Science, Aberystwyth University, Aberystwyth SY23 3DB, UK.}
+
+\title{Breast Density Segmentation Based on Fusion of Super Pixels and Watershed Transform}
+
+
+\begin{document}
+	
+
+ 
+	
+\maketitle
+
+\section*{Abstract}
+
+\subsubsection*{Background and objective}
+Breast density, defined as the proportion of fibroglandular tissue over the entire breast has been linked with a higher risk of developing breast cancer, in fact it has been suggested that women with a mammographic breast density higher than 75 percent have a four-to six-fold higher risk of developing breast cancer than women with little or no dense tissue. Therefore, automatic methods of measuring breast density could potentially aid clinicians to provide more precise breast cancer risk estimates.This paper proposes a novel method of segmenting breast density, which extracts objects with the same density using fusion of super pixels and a watershed based technique, this idea is based on the principle that both super pixel and watershed often results in over segmentation, for the later algorithm, over segmentation may be due to contours which have been suppressed according to similarity of contrast and topological measures, we took advantage of super pixel to consolidate space information and efficiently process the intensity non-homogeneity problem, afterward, re-introduced this contour with watershed transform to get a better segmentation.
+\subsubsection*{Method}
+We used the simple linear iterative clustering (SLIC) to explore the semantic meaning of mammographic images by locally grouping the pixels together as
+super pixels, the super pixel are threshold and then we compute the Euclidean distance for every binary pixels to the nearby zero pixels, then, we applied watershed algorithm and uniquely labeled every pixel to extract objects with the same classification.
+\subsubsection*{Results}
+ We compared the proposed approach using all 322 images obtained from mini MIAS database and found that the segmentation accuracy is much higher based on the number of objects extracted on the mammogram and lucidity in mapping out the tissues distribution. The experiment shows that the new method has an accuracy and robustness compared to moments based approach.
+ 
+\subsubsection*{Conclusion}
+The results show good segmentation accuracy, however, we note that the pectoral muscle is often misclassified as nodular or homogeneous tissue, which indicates that eliminating the pectoral muscles from the mammogram is an important factor in density estimation so that breast analysis can be confined to the breast region alone
+
+\paragraph*{Keywords:}Watershed, Super pixel, Mammograms, Segmentation.
+
+\subsection*{1. Introduction}
+
+{\normalsize Breast density is one of the strongest autonomous predictors of breast cancer risk [1], the denser the breast the higher the risk of developing breast cancer [2]. In fact it has been shown that women with a mammographic breast density higher than 75 percent have a four- to six-fold higher risk of developing breast cancer than women with little or no dense tissue [4]. Therefore, automatic methods of measuring breast density could potentially help clinicians to provide more accurate breast cancer risk estimates. This paper proposes a novel method of segmenting breast density, which extracts objects with the same density using fusion of super pixels and a watershed based technique.
+While so many approaches for mammography density segmentation exits [3], few have used super pixels towards mammography image segmentation. Although it is difficult to establish what constitute a good super pixels algorithm; adherence to image boundary, speed, and efficient usage of memory are some of the desirable property of a good super pixels algorithm. One of the anticipated characteristics of super pixels is over segmentation which allows most important boundaries in the image to be found. 
+Pei et al. [5] proposed a snake based model which is optimized by super pixels to segment the pectoral muscle. They use super pixel segmentation to pre-segment the original image into homogeneous regions with precise boundaries and then define the initial contour of the snake model from the super pixel edges and optimize it by using super pixel classification results. They were able to segment pectoral muscles of different sizes, shapes and intensities. Ji et al. [6] used a multistage segmentation method based on super pixels and fuzzy clustering (MSFCM) to segment MRI brain images, and their approach segment the image by merging the super pixels with the same classification label together. 
+Massich et al. [7] proposed an energy based strategy to segment breast ultrasound (BUS) images based on discrete optimizations using super pixels and a set of novel features analogous to the elements encoded by the US BI-RADS lexicon, they map the image into a discreet set of elements and then formulate the segmentation in a metric labeling problem. Subsequently they re-map the labeling and obtain the final segmentation.
+Mahapatra et al. [8]  proposed an automated method for segmenting cardiac right ventricles (RV) from magnetic resonance (MR) images, first the image was over segmented using super pixels, then each pixel was analyzed for the presence of the RV region using a random classifier. Any super pixels that was found to contain the RV became part of the region of interest (ROI) and this approach employed the use of semantic knowledge and context information. Prabha et al. [9] proposed a lazy random walk (LRW) approach to identify similar regions in an image and group these together based on the intensity of the image pixels. }
+
+%\newpage
+\subsection*{2. Material and methods}
+All 322 images obtained from the mini MIAS database [17] are used as experimental data. The spatial resolution of each image is fixed to 1024 $\times$ 1024 pixels. The database contain 208 and 114 normal and abnormal images. Among the abnormal cases, 63 are benign and 51 malign, image segmentation based on the fusion of super pixels and the watershed transform is proposed taken into account the fact that both super pixel and watershed often results in over segmentation, for the later algorithm over segmentation may be due to contours which have been suppressed according to similarity of contrast and topological measures, and we intend to take advantages of super pixel to consolidate space information and efficiently process the intensity in homogeneity problem, afterward, re-introduce this contour with the watershed transform to get an improved segmentation. This method can be divided to four stages, which are detailed in subsequent subsections and an overview is shown in Fig 1.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{flows.png}
+	\caption{\textit{Shows the block diagram for the propose Algorithm.}}
+\end{figure}
+\newpage
+\subsubsection*{2.1 Pre-processing Technique}We pre-process the mammograms to remove labels and identify the breast area, what we did is to exploit the geometry of our image by detecting the edges in our image then find the contours. If the contour has four  sides (since most mammography label and some artefacts are rectangular in shape) we suppress it using a bitwise operation. We  also improve the visual appearance of the image using histogram equalization [16].
+% \newpage
+Here we suppress radiopaque artefacts and improve the image contrast by stretching out the intensity with histogram equalization, the steps are outline below.\\ 
+
+Load the image I\\ 
+Detects the edges\\
+Find Contours in I
+
+\hspace{1ex} if (contour has 4 points)\\
+\hspace*{6ex} return contour is rectangle
+
+\hspace{2ex}end if\\
+for contour in Contours: \\
+\hspace*{4ex}if (contour is rectangle)\\
+\hspace*{6ex}initialize a mask and apply a bitwise operation to remove the contour\\
+\hspace*{4ex}end if\\
+end for\\
+Finally apply histogram equalization to improve visualization.
+%\newpage
+\subsubsection*{2.2 Rough segmentation}The primary aim of this step is to explore the semantic meaning of the images by locally grouping the pixels together as super pixel, and use this as a pre-processing step for the watershed segmentation algorithm. 
+
+Given the distance measure between a pixel i and the super pixel cluster center $C_{k}$ (see sec 4.for details) as $D$, we can combine the intensity distance and spatial distance in to a single measure which is imperative to normalize color proximity and spatial proximity by their respective maximum distances within a cluster Ns and Nc, we can write $D'$ as . \\
+
+
+
+\begin{align}
+	\label{intencity d}
+	d_{c} & = \sqrt{(L_{j}-l_{i})^2 + (a_{j} - a_{i})^2 + (b_{j}-b_{i})^2}\\ 
+	\label{spatial}
+	d_{s} & = \sqrt{(X_{j} - x_{i})^2 + (Y_{j} - y_{i})^2}\\
+	\label{distance}
+	D' & = \sqrt{(\dfrac{d_{c}}{N_{C}})^2 + (\dfrac{d_{s}}{N_{S}})^2}
+\end{align}
+Given a sampling interval $N_{S} = \sqrt{\frac{N}{K}}$, (where $S$ is the grid interval of super-pixels center define in algorithm 1, $N$ is the total number of pixels in the image and $K$ is a user-define pixel value) therefore, the maximum spatial distance expected within a given cluster should correspond to this sampling interval, determining the maximum color distance Nc is not so straightforward, as color distances can vary significantly from cluster to cluster and image to image. We can avoid this by fixing Nc to a constant $m$ so that (3) becomes
+
+\begin{align}
+	\label{constantm}
+	D' = \sqrt{(\dfrac{d_{c}}{m})^2 + (\dfrac{d_{s}}{N_{S}})^2} 
+\end{align}
+
+\begin{flushleft} 
+	Taken the square of both sides in (4) and multiplying both sides by $m^2$.
+\end{flushleft}
+
+\begin{align}
+	D'(m)^2 =\sqrt{ (d_{c})^2 + (\dfrac{d_{s}}{N_{S}})^2 m^2}
+\end{align}
+
+\begin{flushleft} 
+	letting $ D'm = D,$ and taking the square root of both sides simplifies to the distance measure we use in practice.  
+\end{flushleft}
+
+\begin{align}
+	D = \sqrt{(d_{c})^2 + (\dfrac{d_{s}}{N_{S}})^2 m^2} 
+\end{align}
+
+\begin{flushleft}	
+	we can adapt (6) for a greyscale image  by setting $ d_{c} =\sqrt{ (L_{j} - L_{i})^2 }$   then we have
+\end{flushleft}
+\begin{align}
+	D = \sqrt{(L_{j} - L_{i})^2 + (\dfrac{d_{s}}{N_{S}})^2 m^2}
+\end{align}
+
+
+\newpage
+
+\subsubsection*{2.3 Improved segmentation} The aim of the watershed transform is to search for regions of high intensity gradients (watersheds) that divide neighboring local minima (basins) [13]. Prior to applying this algorithm we first filtered the image using a gaussian filter $(size = 5,5,  \sigma = 0)$ to aid the thresholding step. We then compute the Euclidian distance and apply the watershed transform, in order to improve the final results we used markers which were generated from the initially threshold.
+
+The detection and extraction of objects in the image using a marker based watershed transform uses the following steps:\\
+
+
+\hspace*{4ex}Compute the Euclidean distance for every binarised pixel to the nearest \hspace*{7ex} zero pixel.\\
+
+\hspace*{4ex} Find peaks in this distance map.\\
+
+\hspace*{4ex} Perform a connected component analysis on the local peaks and obtain \hspace*{8ex}markers.\\
+
+\hspace*{4ex}  Compute the watershed transform of the markers
+
+\subsubsection*{2.4 Label and extract object}In order to obtain the final results, it is essential to label the pixels. Every pixel value has a unique label value. Pixels with the same label value belong to the same object where each label corresponds to a unique object in the image. From there, all we need to do is loop over each of the labels individually and extract each object.
+
+\newpage
+\subsection*{3 Experimental Results}To verify the effectiveness of the algorithm, all 322 images obtained from the mini MIAS database [17] are used as experimental data. Figure 2 (a) shows the original image (mdb265lm) (b) after pre-processing, (c) rough segmentation of the image into super-pixels, (d)final image output after improved segmentation, the color code indicate differences in the tissue distribution while circles placed on them gives us the idea on how tissues are distributed around the image. Figure 7: shows different mammography image of all the four BIRADS categories after applying the proposed approach, the first column shows the original images,the second column show the pre-process image, the third column after rough segmentation, fourth column shows the image after applying the proposed method, fifth column indicate the BIRADS class while the last column shows the average tissues composition. 
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.5\linewidth]{mdb265.png}
+		\caption{Original image (mdb265lm)}
+		\label{fig:sub1}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.5\linewidth]{equalize265.png}
+		\caption{After pre-processing)}
+		\label{fig:sub2}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.5\linewidth]{superpixels265.png}
+		\caption{After rough segmentation }
+		\label{fig:sub3}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.5\linewidth]{colour_map265.png}
+		\caption{Final image after segmentation }
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{shows mdb265lm indicating various steps in the segmentation process. $(a)$ showing the original image, $(b)$ showing the image after pre-processing, $(c)$ after segmenting the image in to super-pixels, $(d)$ final image output after improved segmentation, color coding shows the homogeneous region (red) the nodular (yellow), linear (green) and radiolucent (blue). The color coding indicate differences in the tissue distribution while circles placed on them gives us an idea on how tissues are distributed around the image}
+\end{figure}
+\newpage
+\subsubsection*{3.1 Comparison of results with moments based method}
+We compared the proposed approach using the same set of images.The experiment shows that the new method has an accuracy and robustness compared to moments based approach [18]. Figure 3: (left) (middle) and (right) shows the original image (mdb105ll) and the results of segmented mammographic image using both the geometric moments algorithm [18] and the proposed approach respectively, note the misclassification between nodular or homogenous tissue and radiolucent tissue in (middle). Also figure 4: (left) (middle) and (right) shows the original image (mdb184rl) and the results of segmented mammographic image using both the geometric moments algorithm and the proposed approach respectively, also note the misclassification between nodular and homogenous tissue in (middle).
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.275\linewidth]{mdb105.png}\hfil
+	\includegraphics[width=.275\linewidth]{moment.png}\hfil
+	\includegraphics[width=.275\linewidth]{color105.png}
+	\caption{Shows the original mamographic image mdb105ll (left) and the segmentation produced using the geometric moments algorithm [18](middle) and the proposed approach (right), circles are removed for the sake of clarity in comparison. The tissue specific areas in the middle image (i.e geometric moments method) are: nodular (red), linear (green), homogeneous (blue) and radiolucent (yellow). The color coding for the proposed approach (right) is the same as used in Fig. 2. Note the misclassification between nodular or homogenous tissue and radiolucent tissue in the geometric moments (middle) method. } 
+	
+\end{figure}
+\newpage
+\begin{figure}[h!b]
+	\centering
+	\includegraphics[width=.275\textwidth]{mdb184.png}\hfil
+	\includegraphics[width=.275\textwidth]{moment1.png}\hfil
+	\includegraphics[width=.275\textwidth]{color184.png}
+	\caption{Shows the original mamographic image mdb184rl (left) and the segmentation produced using the geometric moments algorithm [18](middle) and the proposed approach (right), circles are removed for the sake of clarity in comparison. The tissue specific areas in the middle image (i.e geometric moments method) are: nodular (red), linear (green), homogeneous (blue) and radiolucent (yellow). The color coding for the proposed approach (right) is the same as used in Fig. 2. Note the misclassification between nodular and homogenous tissue in the geometric moments (middle) method. } 
+	\label{fig:figure6}
+\end{figure}
+
+
+\subsection*{4. Theory}
+{\normalsize Super pixels are increasingly becoming popular in the field of computer vision since Ren and Malik [10]  coined the term “Super pixels” in the their 2003 paper, super pixels are group of pixels that are closely related to each other, the relationship may be due to color similarity or spatial proximity, the main goal of this algorithm is to bundle pixels together to form atomic regions with meaningful interpretation. Most super pixels algorithm results [8] in over segmentation, which allow the most important boundary of the image to be extracted. This might be seen as a disadvantage because many insignificant boundaries are generated in the process. However the trade off to this disadvantage is the fact that no boundaries are missed.
+Super pixel are widely covered in the literature and are broadly categorized in either graph based or gradient-ascent method.  Felzenszwalb and Huttenlocher [11] proposed a method that clustered pixels as nodes in a graph, this approach adheres well to image boundaries but produces irregular shapes. Levinshtein et al. [12] used level set geometric flow to dilate a set of seed location. Simple linear iterative clustering (SLIC) is a gradient-ascent method that adapted the k-means approach; it used color similarity of pixels and spatial information within images to generate compact and uniform super pixels. SLIC is very efficient and showed good adherence to image boundaries. In this paper, Achanta et al. [14] simple linear iterative clustering (SLIC) approach is used as a pre-segmentation technique and the detailed algorithm is shown in algorithm 1
+
+\subsubsection*{Algorithm 1 SLIC super pixel segmentation [14]}
+
+\begin{flushleft}
+	/*** Initialization ***/ \\
+	Initialize cluster centers ${\large C}_{k} = [{\large }l_{k}, {\large }a_{k},{\large }b_{k},{\large }x_{k},{\large }y_{k}]^{T}$ by sampling pixels at regular grid steps S.
+	
+	Move cluster centers to the lowest gradient position in a  3 $\times$ 3  neighborhood.
+	
+	Set label $ {\large }l (_{i}) = -1 $ for each pixel i.
+	
+	Set distance $d(_{i}) = \infty$   for each pixel i.
+\end{flushleft}		
+
+/***  Assignment ***/ 	\\
+
+\hspace{4ex}for each cluster center $ {\large }C_{k} $ do
+
+\hspace{6ex}for each pixel i in a 2S $\times$ 2S region around $ {\large}C_{k}$ do
+
+\hspace{8ex}Compute the distance D between $ {\large }C_{k} $ and i
+
+\hspace{8ex}if $ D < {\large }d (_{i})$ then
+
+\hspace{10ex}set ${\large }d (_{i}) = D$
+
+\hspace{10ex}set ${\large}l(_{i}) = k$ 
+
+\hspace{8ex}end if 
+
+\hspace{6ex}end for\\
+
+\hspace{4ex}end for \\		
+/*** Update ***/ 
+
+Compute new cluster centers.
+
+Compute residual error E.
+\begin{flushleft}
+	Until $E \leq$ threshold.
+\end{flushleft}	
+
+\subparagraph*{Comments:}
+	
+At the initiation stage, let K be the number of approximately equally-sized superpixels that represent the cluster center throughout the volume, if we have an image with N pixels then the estimated size of each super-pixel is $\frac{N}{K}$ pixels. For roughly equally sized super pixels there would be a super pixel center at every grid interval $S =\sqrt{\frac{N}{K}},$ the centers are moved to seed positions corresponding to the lowest gradient position in a 3 $\times$ 3 neighborhood.
+This is done to avoid centering a super pixel on an edge, and to reduce the chance of seeding a super pixel with a noisy pixel. K super pixel cluster centers ${\large C}_{k} = [{\large }l_{k}, {\large }a_{k},{\large }b_{k},{\large }x_{k},{\large }y_{k}]^{T}$ for color images in CIELAB color space with $k = [1, K]$ was chosen at regular grid intervals S. Since the spatial extent of any super pixel is approximately $S^2$ (the approximate area of a super-pixel), we can safely assume that pixels that are associated with this cluster center lie within a 2S $\times$ 2S area around the super pixel center on the image, this becomes the search area for the pixels nearest to each cluster center, now introducing $D$ as a distance measure will determine the nearest cluster center for each pixel. Once each pixel has been associated with the nearest cluster center, an update step adjusts the cluster centers to be the mean $[l, a, b, x, y]^T$ vector of all the pixels belonging to the cluster.The L2 norm is used to compute a residual error $E$ between the new cluster center locations and previous cluster center locations. The assignment and update steps can be repeated iteratively until the error converges, then a post-processing step enforces connectivity by re-assigning disjoint pixels to nearby super pixels. Fig. 5 shows super pixels segmentation of  image mdb023ll. (taken from MIAS database; see Sec.2 for details).	
+%\end{multicols}
+ \begin{figure}[!htb]
+ 	\centering
+ 	\includegraphics[width=.4\linewidth]{mdb023.png}\hfil
+ 	\includegraphics[width=.4\linewidth]{superpixels023.png}
+ 	\caption{Shows original image mdb023ll (left) and the super-pixels segmentation (right)}
+ 	\label{fig:mdb023}
+ \end{figure}
+
+ 	 	 	 
+\subsubsection*{4.1 Watershed Transform.}
+The watershed algorithm was originally proposed by [15] and later improved by [13]. The basic principle of watershed is as follow. Given an image $f$ as a topographic surface and define the catchment basins of $f$ and the watershed lines by means of a flooding process. Visualize that we pierce each minimum of the topographic surface, and that we drop this surface into a lake of water at a constant speed. The water entering through the holes floods the surface during the flooding, two or more floods coming from different minima may merge. We can avoid this event and we build a dam on the points of the surface where the floods would merge. At the end of the process, only the dams emerge partitioning the landscape into
+regions or basins separated by dams, called watershed lines. Fig. 6 shows the concept of watershed segmentation.
+
+	
+
+
+\begin{figure}
+\centering
+\includegraphics[width=.4\linewidth]{watershed.jpg}
+\caption{Shows the concept of watershed segmentation.}
+\end{figure}
+  
+ \subsection*{5.0 Conclusion}In this paper, a novel approach based on the fusion of super pixel and watershed technique is proposed, First we grouped the pixels together to form  super-pixels; then detect and extract objects in the image using a marker base watershed transform. We explored the advantages of super-pixel to strengthening space information and successfully solved the intensity in-homogeneity problem.
+ 
+  We compared the proposed approach with segmentation obtained with moments based approach using the same set of image as experimental data and the results also show good segmentation accuracy, however, we note that the pectoral muscle is often misclassified as nodular or homogeneous tissue, which indicates that eliminating the pectoral muscles from the mammogram is an important factor in density estimation so that breast analysis can be confined to the breast region alone.
+ 
+  \subsubsection*{Conflict of interest}
+We declare that there is no conflict of interest related to this paper.
+
+
+\newpage
+\begin{thebibliography}{9}
+\bibitem{McCommack} 
+V.A. McCormack, I. dos Santos Silva. 
+\textit{Breast density and parenchyma patterns as markers of breast cancer risk: a meta-analysis.} 
+Cancer Epidermal Biomarkers Prev. 15: 1159-69, 2006
+	
+\bibitem{Wolfe} 
+J.N. Wolfe. 
+\textit{Risk for breast cancer development determined by mammographic parenchymal pattern.} 
+Cancer, 37:2486–2492, 1976.
+
+\bibitem{Zwiggelaar} W.He, A.Juette, E.R.E.Denton, A.Oliver, R.Martí, R.Zwiggelaar.
+\textit{A review on automatic mammographic density and 	parenchymal segmentation.} International Journal of Breast Cancer 2015,  Article ID 276217, http://dx.doi.org/10.1155/2015/276217, 2016.
+	
+\bibitem{New England Journal} 
+N.F. Boyd, H. Guo, L.J. Martin, L.M. Sun, J. Stone, E.R. Fishell, R.A. Jong,  G. Hislop, A. Chiarelli, S. Minkin, J.A. Yaffe. 
+\textit{Mammographic density and the risk and detection of breast cancer.} 
+New England Journal of 	Medicine. 2007 356:227-236.
+
+\bibitem{Peili} 
+L.Pei, W.N Li. 
+\textit{Pectoral muscle segmentation in mammograms based on snake model optimized by super 	pixel.}
+Guangdianzi Jiguang Journal of Optoelectronics 26(8):1633-1638.
+
+\bibitem{Ji} 
+S.Ji, B.Wei,  Z.Yu, G.Yang, Y.Yin.
+\textit{A new multistage medical segmentation method based on super pixel and fuzzy 	clustering.} Computational and Mathematical Methods in Medicine 2014, Article ID 747549.
+
+\bibitem{Ultra-sond} 
+J. Massich, G. Lemaitre,  J.Marti,  F.Meriaudeau.
+\textit{Breast Ultra-Sound image segmentation an optimization approach based on super-pixels and high-level descriptors.} 
+International Conference on quality control and artificial vision (QCAV) 2015,  2015, LeCreusot, France.
+
+\bibitem{Mahapatra} 
+J.Mahapatra.
+\textit{Cardiac image segmentation from Cine Cardiac MRI Using Graph Cuts and Shape Priors} Society for Imaging Informatics in Medicine 2013.
+227(6): 794–804. Published online 2014 June doi:10.1007/s10278-014-9705-0, 2014.
+
+\bibitem{Prhaba} 
+R. Prabha, C. Kohila. 
+\textit{Lazy random walks for super pixel segmentation.} Karpagam Journal of 	Engineering Research (KJER) Volume No: II, Special Issue on IEEE Sponsored International 	Conference on Intelligent Systems and Control (ISCO’15).
+
+
+\bibitem{Malik} 
+X. Ren, J. Malik. 
+\textit{Learning a classification model for segmentation.} Proceedings of the International  	Conference on Computer Vision, pages 10 – 17, 2003.
+
+
+\bibitem{Falzenswalb} 
+P.F.Felzenszwalb, D.P.Huttenlocher. \textit{Efficient graph-based image segmentation.} D.P. International Journal of Computer Vision (2004) 59:167. doi:10.1023/B:VISI.0000022288.19776.77.
+	
+\bibitem{Leviinshtein} 
+A. Levinshtein, A. Stere, K. Kutulakos, D. Fleet, S. Dickinson, K.Siddiqi. 
+\textit{Turbopixels: fast super pixels using geometric flows}.  
+IEEE Trans. Pattern Analysis and Machine Intelligence, 31,(12), pp. 2290-2297, 2009.
+	
+\bibitem{Beucher} 
+ S.Beucher.
+\textit{The Watershed Transform Applied to Image Segmentation}. Proceedings of the  Pfefferkorn 	Conference on Signal and Image Processing in Microscopy and Microanalysis, pp. 	299–314,  1991.
+
+\bibitem{Slic} 
+R. Achanta, A.Shaji, K. Smith, A. Lucchi, P. Fua  
+\textit{super pixels compared to state-of-the-art super pixel methods}.IEEE Transactions on Pattern Analysis and Machine Intelligence, 34 (11), pp: 2274-2282 2012.
+
+\bibitem{Digabel} 
+H. Digabel, C. Lantuejoul. 
+\textit{Iterative Algorithms}. Proceedings of the 2nd European Symposium Quantitative 	Analysis of Microstructures in Material Science, Biology and Medicine, 85-89, 1998.
+
+\bibitem{Book} 
+R. C. Gonzalez and R. E. Woods. 
+\textit{Digital Image Processing}.Third Edition, 2008.
+
+\bibitem{Mias} 
+J. Suckling, J. Parker, D. Dance, S. Astley, I. Hutt, C. Boggis, I. Ricketts, E. Sta-matakis, N. Cerneaz, S. Kok, 	P. Taylor, D. Betal, J. Savage 
+\textit{The mammographic images analysis society digital mammogram database}.in: 	Dance, Gale, Astley, Gairns (Eds.), Excerpta Medica. International Congress Series, Vol. 1069,
+Elsevier, 1994, pp. 375–378
+
+\bibitem{Zwiggelaar}W.E.He, K.Stafford, E.R.E.Denton, R.Zwiggelaar.
+\textit{Mammographic image segmentation and risk classification based on
+	mammographic parenchymal patterns and geometric moments.} Biomedical Signal Processing and Control 6 (2011) 321– 329.
+
+\end{thebibliography}
+
+\begin{figure}
+	\centering
+	
+	\includegraphics[width=\linewidth]{myimage}
+
+ 
+	\caption{proposed approach applied to different mammography image of all the four BIRADS categories, the first column shows the original images,the second column show the pre-process image, the third column after rough segmentation, fourth column shows the image after applying the proposed method, fifth column indicate the BIRADS class while the last column shows the average tissues composition. Color coding is the same as used in Fig. 2.
+			}
+\end{figure}
+
+
+\end{document}

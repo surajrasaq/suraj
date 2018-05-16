@@ -1,0 +1,141 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Eight report submitted on 28-May-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{One-Class SVM}
+ 
+One-Class SVM is a special case of Support Vector Machine that learn a hyper plane by separating all the data points from the basis and constructs a smooth boundary around the majority of probability mass of data, it is an unsupervised algorithm that learns a decision function for uniqueness detection by classifying new data as similar or dissimilar to the training set which makes it suitable for detecting anomaly.
+
+given a  data-set $X$, with an unknown label, and a $\Phi(X)$  RKHS map (kernel Hilbert space) function from the input space to the feature space $F$, a decision function $f(X_n)$ in the feature space $F$ is given as $f(X_n) = w^T\Phi(X_n) -r$ , to separate as many as possible of the mapped vectors $\Phi(X n: ),n : 1, 2, ...,N$ from the origin. Where $w$ is the norm perpendicular to the hyper-plane and $r$ represent the bias of the hyper-plane, then we arrive at:
+
+\[min_{(w,r)}\frac{1}{2}\|w\|_2^2 + \dfrac{1}{v}\ldotp \dfrac{1}{N}\sum_{i =1}^{n}max (0,r -\langle w,\Phi(X_n:)\rangle) - r \]
+
+$v$ is the is the parameter that represent the balance between maximizing the hyper-plane and the total data-point permitted across the boundary and $v$ ranges between (0, 1).
+
+
+\newpage
+
+\begin{figure}
+	
+	\centering
+	\includegraphics[width=\linewidth]{anomaly_svm.png}
+	\caption{Anomaly Detection with One-Class SVM }
+	
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{new_test_data_SVM.png}
+	\caption{ Shows One-Class SVM with new test-data (note the anomaly in white).}
+	
+\end{figure}
+
+\end{document}

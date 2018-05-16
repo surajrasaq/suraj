@@ -1,0 +1,586 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\usepackage{ragged2e}}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	\textsc{\LARGE University of Lyon/University Jean Monnet}\\[1.5cm] % University of Lyon/University Jean Monnet
+	\textsc{\Large Master in Machine Learning and Data Mining}\\[0.5cm] % Master In Machine Learning And Data Mining.
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices.}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Fabrice  \textsc{Muhlenbach} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Final report submitted on 22-June-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+\section*{Brief Company Introduction}
+\textbf{Novin} is a startup company located at No 7 Rue Pablo Piccaso Siant-etinne, they propose to manufacture a smart walking cane that can detects any unusual situation (fall detection, lower activity, etc.), to be used by the elderly people, the cane is suppose to be able to automatically alerts caregivers and family, without any action from the user, if needed. Although as a startup company they are still on the design phase so their's no data on ground for my analysis, in view of this i have decided to start my study from ground zero and hope to gather some data on my own for the analysis.
+
+ \section*{Introduction}
+ 
+The develop world has witness a tremendous increase in the population of the older people while the developing world are not left behind, quality of living has generally improved worldwide and people now tend to live longer.  It is estimated that this trend might continue to soar with the [1]. 2013 united nation projection of about 2523 billion worldwide population of older people by 2050.
+
+Because people experience aging in a unique way, it makes it very difficult to evaluate the behavioral pattern of the elderly people; however proper knowledge and understanding of the way our senior citizen behave will allow them to continue to live a meaningful life and to make valuable contributions to the society. Generally, socially active elderly people were more likely to avoid disabilities associated to daily activities when compared to people who are not socially active, In addition to this, Unadulterated peace of mind will be guaranteed for the older citizen with the awareness that they are constantly been watch over when in need of emergency. 
+
+\paragraph*{Elderly Activities:}
+
+Activities for daily living (ADL) has been used frequently to refer to the daily living and survival of an individual, but recent usage of this terms are mostly common for the aged people, elderly people are in constant in need of help which may warrant a move to seek help from outsider or ultimately entering a nursing home, now the question arise, how do we evaluate the need of an individual? Do we ask them verbally or understudy their behaviors? Advanced in technology and the use of IoT devices enable us to use latter options. Fast increase in elderly population has necessitate the growing demand in many applications such as health-care systems for monitoring the activities of Daily Living this also has so many advantages and the use of context aware computing systems using smart devices are becoming more popular especially in the field of anomaly detection. Now it is possible to track occurrences of regular behavior in order to monitor the health and find changes in activity patterns and lifestyles [2] for elderly or people with disabilities, ADL monitoring can be used to detect the likely hood of an individual health challenged also used to study the pattern of an individual daily activities.
+
+
+%\newpage
+\subsection*{Some common and identified behavior in elderly people:}
+
+ Behavior is an individual things which might be difficult to generalize, getting a common ground might be tricky, some study has it that an older person will probably act the same way he or she has been acting when young, but in reality aging affect us differently, sense organs depreciate as we are growing older, hearing loss are frequents, visions can depreciate and others may even experience cloudy taught which is a direct results of memory loss, so its save to conclude that elderly activities are highly connected to health statues of the individual, this is why disability researchers have devoted considerable attention to developing measures that tap practical dimensions of everyday life as a way of measuring a person's physical functioning. The activities of daily living are increasingly being used as the way to measure disability The main conclusion is that ADL estimates will differ for good reasons and that there is no one "right" estimate [3]. Finally, Activities of daily living (ADLs) can be broken down in different categories.
+%\newpage
+\begin{itemize}
+	
+	\item   Sanitation.(Cleaning and regular home choir)
+	
+	\item  Personal Managements.(Ability to be able to organize and manage self)
+	
+	\item   Feeding.(Capability of self feeding without Assistance)
+	
+	\item	Dressing (Ability to be able dress self)
+	
+	\item 	Ambulating. (Ability to be able to move or walk independently)	
+	
+\end{itemize}
+
+%\newpage
+\subsection*{Ambulation and the risk of falling}
+
+The primary aim of this study is to investigate anomaly associated with ambulation in elderly people, in order to properly evaluate this, first we need to study ambulation and risk associated with it, then try to identified and detect anomalies that are connected with them. Ambulation is the ability to move from one position to the other; Ambulation provides an array of physical and mental benefits for the elderly which range from muscle strengthen, relief from pressure and joint and also generally promote the feeling of independent. Some old people are able to ambulate by themselves, while some need assistance from experts, others may require assistive devices such as gait belts, canes, and walkers. 
+
+Mobility has been recognize as a very important factor which can serve as a natural remedies from feeling isolated and greatly reduce anxiety and depression it’s also serve as a form exercise for the elderly, but this does not come without a risk, due to the loss of bone mass or density in elderly people, the tendency to fall is high even with the use of walking sticks, fall has been describe as a leading cause of injuries and possibly death among the senior citizen. It can also lead to fear further falling and ultimately lead to depression.
+
+Recently fall among the elderly has attract a growing interest in the field of artificial intelligence several studies have demonstrated different technique to tackle this menace and possibly provide a visible solution. Falls are defined as accidental events in which a person falls when his or her center of gravity is lost and no effort is made to restore balance or this effort is ineffective; the underlying mechanism could be a seizure, a stroke, a loss of consciousness or non contestable forces.[4], The prevalence of falls is known to increase sharply with age[5], more than 2.1 million falls was reported in 2007 and they were the leading cause of nonfatal injuries among persons 65 yrs or older treated in hospital emergency departments in 2008[6], aside falls other related gait behavior are being understudy especially syncope, stumbling, and abnormal bend down. 
+
+Most cases of fall often go without reporting once a patient has been taken to the hospital people tend to forget about the incidence. Different way of preventing fall has been suggested by experts. We can reduce the possibility of an unfortunate fall by removing any and all items that may present themselves as obstacles and ensure that the patient is wearing appropriate, supportive shoes or footwear, but the question is can we totally prevent fall? The answer is NO but we can device a mean of reporting it and the patients can get the necessary intervention at the appropriate time.
+
+
+\subsection*{Anomaly Detection and Classifying Fall as an anomaly:}
+
+How do we classify fall as anomaly? up till this moments no dataset of real-world fall is available [7], whereas detecting falls and alerting the appropriate quarters will be a plus and sources of confidence building among the elderly, moreover treating fall or no-fall as a binary case might not be too effective due to individual behavioral difference, therefore we need a more robust method in order to be able to properly classify fall. [8]  has classified falls detection in to context-aware systems and wearable devices, the former uses sensors such as cameras, floor sensors, infrared sensors, microphones and pressure sensors deployed in the environment to detect fall while the latter employ the use of miniature electronic devices like accelerometers and gyroscope that are worn by the users. Uses of inexpensive smart devices embedded in cane, wrist-band, neck-lace and shoes can also do this magic.
+
+Motion detection are mostly explore in detecting fall and the use of accelerometer and gyroscope has been used in most of the aforementioned wearable detector, but we still need an intelligent machine learning technique that will analyze data taken from  this devices to identified and segregate ordinary fall from accidental falls. Another challenge is recognizing the recovery moments, yes accidental fall could happen but when the user recover (time range is needed here) and pick up the device back it should be able to feed back the appropriate quarters on the recent recovery. 
+
+Traditional anomaly detection technique could be train to learn fall and also learn  in broad manner the daily activities perform by the elderly people, but actual related data will be better fit for evaluation. Anomaly detection system is vital and must be reliable, effective and efficient, the precision must be accurate because of risk involve when the user is in trouble, it should act promptly by notifying the people involve, type 1 error can be tolerated to some extent but type 2 error should be totally avoided, study have found that the number of false positives per day in real scenarios ranged from  to   [9] depending on the specific technique, showing a decrease in performance with respect to laboratory environments. This number is still not acceptable, which leads to device rejection . Therefore, to improve the level of penetration of these systems it is essential to find a robust Anomaly detector where fall can be treated as a life threaten anomaly which can trigger strong alert.
+
+Fall detection techniques could be split into two main families:  vision based approaches and Non-vision based approaches [10], vision-based fall detection methods are usually rested on information captured from images and videos, while non non-vision based uses sensors such as acceleration and vibration sensors. Most popular fall detection techniques exploit the use of accelerometer data as the main input to discriminate between falls and activities of daily living (ADL). 
+
+Threshold approach based on accelerometer is common, here an alert is triggered according to the pre-define threshold which is measure by peak value during a fall also a more sophisticated and more reliable way is to employ the services of machine learning algorithm [11]  several studies has explore the use of machine learning technique to classified fall,  a particular draw-back to fall classification is that traditional approaches to this problem suffer from a high false positive rate, particularly, when the collected sensor data are biased toward normal data while the abnormal events are rare [5]. we can conclude that classifiers are said to sensitive if they classified anomaly as not normal and specific if ADL is classified as ADL [12].
+
+
+
+\section*{Review literature based on existing study}
+
+Several study have been carried out in order to segregate what’s can be termed normal and abnormal behavior among the older citizen, most of this studies are based on heuristic analysis discriminative and generative methods are also been used and they may be combined for better classification. however some of this method are not so comfortable to the users because they are made to wear various sensor on their body including neck, wrist, waist and even foot, a vision based approach might be intrusive on the privacy of the user and the fact that cameras are not suitable for bathroom even complicate the uses of this method, moreover since of this method are majorly based on falls detection which at times report more false positive which lead to mistrust of this devices among the caregivers and relatives, following are some of the existing method and technique adopted in learning the activities of daily living of the elderly people.
+
+\textbf{Wagner file analysis} [8], A cloud based health care system is proposed in this paper for the elderly using an incremental SVM (CI-SVM) learning with tri-axial acceleration sensor embedded a to capture the movement and ambulation information of elderly. The collected signals are first enhanced by a Kalman filter. And the magnitude of signal vector features is then extracted and decomposed into a linear combination of enhanced Gabor atoms. The Wigner-Ville analysis method is introduced and the problem is studied by joint time-frequency analysis. The original abnormal behavior data are first used to get the initial SVM classifier. And the larger abnormal behavior data of elderly collected by mobile devices are then gathered in cloud platform to conduct incremental training and get the new SVM classifier. By the CI-SVM learning method, the knowledge of SVM classifier could be accumulated due to the dynamic incremental learning. 
+
+\textbf{Activity recognition} using fusion of multi-sensor was adopted by [9].  Two sensors are fused for coarse-grained classification in order to determine the type of the activity: zero displacement activity, transitional activity, and strong displacement activity. Second, a fine-grained classification module based on heuristic discrimination or hidden Markov models (HMMs) is applied to further distinguish the activities. Slight change of air pressure was used to detect vertical movements [10] and classification was achieved by using one acceleration sensor and one air pressure sensor attached on the waist used to detect the moving styles of going up/down the stairs or in an elevator.
+
+[11] \textbf{Uses conductive textile based electrodes} that are integrated in to wearable garments, capacitance change inside the human body was measured, and such changes are interrelated to motions and shape changes of muscle, skin, and other tissue, which can in turn be related to a broad range of activities and physiological parameters. Activities such as chewing, swallowing, speaking, sighing (taking a deep breath), as well as different head motions and positions was learned.
+
+\textbf{Artificial Neural Networks} (ANNs) in conjunction with a simple kinematics model was used by [12] to detect different postural transitions (PTs) and walking periods during daily physical activity.  Inter-connected neurons are capable of automatic learning based on experience and approximating non-linear combinations of features for pattern recognition. [23] Utilize the infrared (IR) motion sensors to assist the independent living of the elderly who live alone and to improve the efficiency of their health care. An IR motion-sensor-based activity-monitoring system was installed in the houses of the elderly and used to collect motion signals and three different feature values, activity level, mobility level, and non-responsive interval.
+
+
+\textbf{Medrano et al} [13] try out the use of a machine learning technique based on one-class classifier that has only been trained on ADL to detect falls as anomalies with respect to ADL. In particular, their experimentation was conducted with a k-Nearest Neighbor (kNN) classifier. Although they conducted their studies on simulated data by volunteers this participant simulated about eight different type of falls (forward falls, backward falls, left and right-lateral falls, syncope, sitting on empty chair, falls using compensation strategies to prevent the impact and falls with contact to an obstacle before hitting the ground.) using smart phone embedded with accelerometer and then try to learn one-class kNN and subsequently they try to evaluate their model two-classes Support Vector Machine (SVM) with a promising results, however they conclude that accelerometer provides detailed information on behavior such as physical activity and inactivity. 
+
+This information can be used to measure more comprehensive relationships among movement frequency, intensity and duration , but anomaly detection is not visible this conclusion might not be entirely correct because SVM is an highly computational demanding model during training which cannot be met using mobile phones with limited computation power, also smart phones are not design for safety applications.
+
+[14] The paper tries to address fall from statistical point of view as an anomaly detection problem. Specifically, the paper investigates the multivariate exponentially weighted moving average (MEWMA) control chart to detect fall events. This approach is based on visual monitoring, where they used image processing scheme to detect fall and trigger alert. Here they completed treat falls as binary where anomaly occurs at the moment of the fall. When a person falls, a fall detection system would declare it as abnormal action. Ling Shao et al [15], categorize falls in to falls from walking or standing, falls from Standing on supports, e.g., ladders etc., falls from sleeping or lying in the bed and falls from sitting on a chair, but if we are to follow this classification then the focus of this studies will be on the first two since we are dealing majorly with ambulation as a sub-set of ADL.
+
+\textbf{Noury et al} [16], designed a smart fall sensor, the software application transmits the data remotely through the network as well as exploiting data locally. The data are further analyzed to determine the current state such as lying after a fall, sleeping, walking, etc. [17] Nyan et al.  Distinguished backward and sideway falls from normal activities using gyroscopes (angular rate sensors). The gyroscopes are securely placed on different positions, such as underarm and waist. This angular rate is measured for normal activities and falls in lateral body planes. A high speed camera is used to capture video image sequences of motion for body configuration analysis in the event of a fall. High speed cameras have the frame rate of 250 frames per second. The fusion of high speed camera images and gyroscope data is synchronized. Gyroscopes rely on the idea of acceleration thresholds to differentiate fall events from normal activities.
+
+\textbf{Marker-based stigmergy} [18], can be employed by exploiting both spatial and temporal dynamics because of it’s intrinsically embodies by the time domain. Moreover, the provided mapping is not explicitly modeled at design-time and then it is not directly interpretable which offers a kind of information blurring of the human data, and can be enhanced to solve privacy issues being experience in some model. Furthermore, analog data provided by marker based stigmergy allows measurements with continuously changing qualities, suitable for multi-valued classification.
+
+\textbf{Alessandra Moschetti et al} [19] compare unsupervised and supervised methods in recognizing nine gestures by means of two inertial sensors placed on the index finger and on the wrist. Three supervised classification techniques, namely Random Forest, Support Vector Machine, and Multilayer Perceptron, as well as three unsupervised classification techniques, namely k-Means, Hierarchical Clustering, and Self-Organized Maps, were Compared in the recognition of gestures made by 20 subjects. The obtained results show that the Support Vector Machine classifier provided the best performances (0.94 accuracy) compared to the other supervised algorithms.
+
+\textbf{Faria et al} [20], uses probabilistic ensemble of classifiers (DBMM) with a local update of weights designed for activity recognition, their approach is based on confidence obtained from an uncertainty measure that assigns a weight for each base classifier to counterbalance the joint posterior probability.A dictionary learning algorithms K-singular value decomposition (K-SVD) is used to learn human activities [21] by exploring sparse signal representation.
+
+%\newpage
+
+\subsubsection*{Method and Technique}
+
+Although none of the existing technique has explore the use of smart cane been proposed here to detect anomalies in ADL, this novelty has introduced a new dimension in to this field as cane or walking stick is a natural aids for ambulating among the elderly and disable, we presume this will be more convenient and more comfortable for the users compare to the wearable devices which may be intrusive and awkward. The system is composed of perception layer, Data collection and storage layer, smart learning platform, and Intervention layer. Fig [1] depicts the block diagram of the proposed system.
+
+%\newpage
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{block_diagram.png}
+	
+	\caption{Image Show the block diagram of our approach.}
+	
+\end{figure}
+
+\subsubsection*{Perception Layer:}
+
+This layer represent the genesis of the whole system, it comprises of accelerometer, GSM, GPS and gyroscope, Accelerometry provide detailed information on physical activities and inactivity and this information can be used to measure more comprehensive relationships among movement frequency, intensity and duration, it can also measure vibration intensity. GSM and GPS is used to monitored the location of the user in case of emergency while the gyroscope will be used to measure orientation in addition to that it also aid to put the accelerometer to sleep when the cane is on pause mode and activate it when pick up again, data gathered by the cane will stored in the storage layer for analysis.
+
+%\newpage
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{cane.jpg}
+	
+	\caption{Image show the Cane with device attached }
+	
+\end{figure}
+
+
+
+\subsubsection*{Storage layer:} Data generated by the perception layer will be stored here and preliminary process like filtering and feature extraction will be done here before been transferred to the smart learning platform which will learn and classify each different activity, data receive by the storage include:
+
+\textbf{Activities Data:} is a set activities that are trigger when the user takes the cane, and it stop when the user put the cane down, data in this categories include 
+
+
+\begin{itemize}
+	
+	\item   activity begin time
+	
+	\item  activity end time
+	
+	\item   number of steps	
+	
+\end{itemize}
+
+\textbf{Pauses:} this is sub-activity that happen when no step has been detected for 15 seconds, it automatically stops when a step is detected data in this categories include 
+\begin{itemize}
+	
+	\item   Pause begin time
+	
+	\item   Pause end time	
+	
+\end{itemize}
+
+\textbf{Alerts:} this may be trigged by the occurrence of accidental fall when this occur the cane vibrates and the user has up to 15 seconds to cancel it by picking it up else it will be reported as fall,  data in this categories include
+
+\begin{itemize}
+	\item   Fall time
+	
+	\item   Fall alert(false when cancel otherwise true)
+\end{itemize}
+\textbf{Ambulatory Pattern data:} Walking pattern will be collected and stored here this will include but not limited to slow ambulation, extreme slowness in walking, walking and stopping which might be as a results of tiredness, arm shaking and vibrations, adequate learning of this pattern will be useful for the prediction of impeding ailments of the user’s. 
+
+\subsubsection*{Filtering and Noise Removal:} Filtering and noise elimination is a fundamental part of this work; noise may interfere and corrupt the final results. A low pass filter is used here due to its efficiency in removing small amount of high frequency noise and Computation simplicity, it passes low-frequency and reduces the amplitude of frequencies higher than the cutoff frequency.
+
+
+\[y_{(i)} = \sum_{i =1}^{n}y_i-1 * \alpha(x_i-y_i)\]
+
+\[0 < \alpha< 1.\]
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{not_filter.png}
+		\caption{Signal before Filtering }
+		\label{fig:sub1}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{after_filt.png}
+		\caption{Signal After Filtering}
+		\label{fig:sub2}
+	\end{subfigure}
+	
+	\caption{Image (a) show the raw Signal Before Low Pass Filtering, Image (b) Shows Signal After Filtering.}
+	
+\end{figure}
+\textbf{Feature Extraction:} Signal Magnitude Area (SMA) can be used as a measure for differentiating between static and dynamic activities with the use of all three axis in the accelerometer signals, we achieve this by computing the sum of the norm of individual axis.  
+
+\[SMA = \sum_{i =1}^{n}{(|X_{(i)}|)} + {(|Y_{(i)}|)} + {(|Z_{(i)}|)}\]
+
+\textbf{Energy Feature:} The set of feature extracted here are use to  discriminate between different  types of activities such as walking, pausing, shaking, and can also used to identify the rate of velocity during ambulation such as fast walking, slow walking and extreme slowness in ambulation, we compute the short time Fourier transform (STFT) using the energy absorption.
+
+
+\[X_i{[k]} = \sum_{n = -\frac{N}{2}}^{\dfrac{N}{2-1}}{w{[n]X}}  {[n + l H]e} ^{-j2\pi\dfrac{kn}{N}}\]
+
+\[w = analysis\ window \]
+\[l = frame\ number\]
+\[H = hop- Size\]
+
+
+\subsection*{Smart Learning Platform}
+
+This will be an incessant learning environment which can learn based on individual daily ambulatory activities and if abnormal activities are detected a soft or strong alert will be activated and the intervention layers will be notified accordingly, a soft alert is activated if some unusual (but regarded as a learnt norm for the said individual) is detected for example a person who frequently drop the cane and pick it up again within the stipulated time frame. A strong alert is activated if the behavior is completely alien to the individual.
+
+Our approach has so many advantages over all other existing methods, first the non-intrusive nature of this method, users done need to wear any special bracelet or wrist monitoring, they only to pick up the cane when they need to ambulate which acts as the traditional and the usual aids for the old, weak and disable people right from time immemorial and the simplicity and adaptability to the user behavior which can be learned in both supervised and unsupervised ways.
+
+\subsubsection*{Classification using LDA}
+
+Linear Discriminant Analysis (LDA) is mainly commonly used as a dimensionality reduction procedure in the pre-processing step for pattern-classification and machine learning applications. The objective is to project a dataset onto a lower-dimensional space with good class-separability in order avoid overfitting (“curse of dimensionality”) and also reduce computational costs. LDA is a second order statistical approach and a supervised classification approach that utilizes the class specific information maximizing the ratio $j_{(w)}$ of the within and between class.
+
+\[j_{(w)} =\dfrac{w^TS_b w}{w^T S_w w}\]
+
+where $S_b$ and  $S_w$ are the between and the withing class respectively, they are computed as follow:
+
+\[S_b = \sum_{k =1}^{k} (m_k - m)N_k(m_k - m)^T\]
+
+\[S_w = \sum_{k =1}^{k} \sum_{n =1}^{N_k}(X_nk - m_k)(X_nk - m_k)^T\]
+
+where $N_k$ is the number of example in k-class and $X_nk$ is the $nth$ data in $kth$ class $m$ is the mean of the entire set and $m_k$ is the mean $kth$ class, Note that we can compute the Langrangian Dual and KKT by maximizing $j$ then we have
+
+\[S_w^{-1}S_b w = \lambda w\]
+
+%\newpage
+
+\begin{figure}
+	
+	\centering
+	\includegraphics[width=\linewidth]{LDA_decision.png}
+	\caption{Show Linear Discriminant Analysis }
+	
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{LDA_decision_test_high.png}
+	\caption{ Shows Linear Discriminant Analysis With test data highlighted).}
+	
+\end{figure}
+
+
+ 
+ \subsubsection*{Dimension reduction with PCA}
+ 
+ Selecting the best feature and reducing the dimensionality to forestall the possibility of overfitting is a very important aspect of learning, Principal Component Analysis (PCA) is a very popular and effective method for achieving dimension reduction, in addition to this, PCA can help in speeding up the learning rate of a classifier. we subject the data to PCA and the results is a better classification of our data.
+
+
+ Lets $x$ be a vector of random variable $ r $ such that transpose of $x$ is denoted by $x^T$ therefore, we can have $ x = [x_1,x_2,...x_r]^T$
+ 
+ Now we need to find the a linear function of $x$ that can maximize the variance $\alpha_1^Tx$ where $\alpha_1$ is a vector of $r$ constant $\alpha_{11}, \alpha_{12},...\alpha_{1r}$, and $\alpha_1^Tx$ become
+ 
+ \[\alpha_1^Tx = \alpha_{11}x_1 + \alpha_{12}x_2,...+...+\alpha_{11}x_r = \sum_{j =1}^{r}\alpha_{1j}{xj}\].
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{LDA_PCA_test.png}
+	\caption{ Shows Better Classification after dimension reduction with PCA.}
+	
+\end{figure}
+
+
+ \subsection*{Anomaly Detection and Data analysis}
+ 
+Since the objective of this study is to detect anomaly related to the elderly ambulation, we activate the actual device which is the smart cane and collect the actual data for analysis more-so,since data is an integral part of this studies and accurate data collection is required to guarantee the integrity and cohesion of this device, therefore,in the absence of the real data from the actual end user, ambulation data with step count were gathered by demonstrating and mimicking the movement of the elderly feature engineering and analysis was carried out on the said data, the following data were gathered from the cane.
+
+
+\textbf{Activities Data:} is a set activities that are trigger when the user takes the cane, and it stop when the user put the cane down, data in this categories include 
+
+
+\begin{itemize}
+	
+	\item   activity begin time
+	
+	\item  activity end time
+	
+	\item   number of steps	
+	
+\end{itemize}
+
+\textbf{Pauses:} this is sub-activity that happen when no step has been detected for 15 seconds, it automatically stops when a step is detected data in this categories include 
+\begin{itemize}
+	
+	\item   Pause begin time
+	
+	\item   Pause end time	
+	
+\end{itemize}
+
+\textbf{Alerts:} this may be trigged by the occurrence of accidental fall when this occur the cane vibrates and the user has up to 15 seconds to cancel it by picking it up else it will be reported as fall,  data in this categories include
+
+\begin{itemize}
+	\item   Fall time
+	
+	\item   Fall alert(false when cancel otherwise true)
+\end{itemize}
+
+
+
+
+\subsubsection*{Data description}
+
+Data description and documentation is necessary to ensure that the researcher, and others who may need to use the data can make sense of the data and understand the processes that have been followed in the collection, processing, and analysis of the data, below are the description of each column and how they are computed.
+
+\begin{itemize}
+	\item  \textbf{ date:} This represent the day column and the day the activity was carried out
+	
+	
+	\item   \textbf{step count:} The total number of steps taken by the user on a particular day.
+	
+	\item \textbf{Pause duration:} The total duration of pause by the user during activity its represented in seconds
+	
+	\item \textbf{mood:} This is an heuristic feature that intend to express the user's feeling on a particular day although this is assume not to be 100 percent accurate but might be interesting to estimate user's daily mood and its computed based on the following algorithm,
+	
+	\begin{lstlisting}
+	walk_duration = []
+	for i in range(0,len(walk_duration)):
+	if walk_duration  >= 3000:
+	mood is 'Excelent Mood'
+	elif walk_duration >= 1000:
+	mood is 'Very good mood'
+	else:
+	mood is 'moody'
+	
+	\end{lstlisting}
+	
+	Mood is represented in binary as follow, 100 = moody, 200 = Very good mood	and 300 = Excellent Mood.
+	
+	\item \textbf{activity begin:} This is the beginning of a daily activity literately when the cane is picked up.
+	
+	\item \textbf{activity end:} This is the end of a daily activity literately when the cane is finally laid to rest and no activation is detected for the rest of the day.
+	
+	\item \textbf{activity length:} This is the length of total activity for the day, it is computed from the sum of the difference of the activity begin and activity end time and converted in to second.
+	
+	\item \textbf{true falls:} A true falls is detected when the cane loose its equilibrium and balance is not regain in 15 seconds interval.
+	
+	\item \textbf{walk duration:} This can be referred to as total active moments of the day because it represent total duration of ambulation by the user, its computed by taking the sum of walking duration minus total pause duration.
+	
+	\item \textbf{tiredness:} This is the rate of exhaustion that maybe experience by the user, tiredness maybe due to fatigue or sign of physical weakness that can be experience as one grow older or it can signify sign of distress, it is computed by taking the ratio of walk duration to the pause duration, it maybe noted that threshold can be set for this and a distress alert can be generated if tiredness is greater than 1 this is definitely not a good sign because it means the user pause more often than doing the actual walking, although this may not be 100 percent accurate because user may pause to talk to people or due to some other reasons.
+	
+	\item \textbf{speed:} This is the rate of change of velocity of the user, we can estimate how fast the user move and this is computed by taking the ratio step counts to walk duration.
+	
+	\item \textbf{false falls:} This is a trigger alert when the cane loss its equilibrium but cancel by been pick up withing the 15 seconds time frame.
+	
+	\item \textbf{true fall time:} This is the time when true falls occur.
+	
+	\item \textbf{false fall time:} This is the time when false falls occur.
+	
+\end{itemize}
+\newpage
+\begin{thebibliography}{9}
+	
+
+	
+\bibitem{who} 
+
+World population ageing, Technical Report, UN World Health
+Organization vol. 374, pp. 1–95, 2013.
+
+
+\bibitem{SARF}
+
+Smart Activity	Recognition	Framework in Ambient Assisted Living
+Conference	Paper September	2016
+DOI:10.15439/2016F132
+
+\bibitem{US Deaprtments of health and human services}
+
+MEASURING THE ACTIVITIES OF DAILY LIVING AMONG THE ELDERLY : A Guide to National Surveys. U.S. Department of Health and Human Services Assistant Secretary for Planning and Evaluation Office of Disability, Aging and Long-Term Care Policy
+
+\bibitem{Fall Prevention}
+
+Fall prevention in the elderly, available at: https://aspe.hhs.gov/pdf-report/measuring-activities-daily-living-among-elderly-guide-national-surveys
+
+\bibitem{Ziere}
+Ziere G, Dieleman JP, Hofman A, et al. Polypharmacy and falls in the middle age and elderly
+population. Br J Clin Pharmacol. 2006; 61:218–23. [PubMed: 16433876]
+
+\bibitem{John T}
+John T. Henry-Sánchez, MD, Jibby E. Kurichi, MPH, Dawei Xie, PhD, Qiang Pan, MA, and
+Margaret G. Stineman, MD. Do Elderly People at More Severe Activity of Daily Living Limitation Stages Fall More?Published in final edited form as: Am J Phys Med Rehabil. 2012 July ; 91(7): 601–610. doi:10.1097/PHM.0b013e31825596af.
+
+
+\bibitem{Daniela Minucci}
+Falls as anomalies? An experimental evaluation using smartphone accelerometer data Daniela Micucci · Marco Mobilio · Paolo Napoletano · Francesco Tisato
+
+
+
+\bibitem{Raul Igual}
+Challenges, issues and trends in fall detection systems Raul Igual,Carlos Medrano and
+Inmaculada Plaza BioMedical Engineering OnLine201312:66
+https://doi.org/10.1186/1475-925X-12-66
+
+\bibitem{Bagala}
+Bagala F, Becker C, Cappello A, Chiari L, Aminian K, et al. (2012) Evaluation of accelerometer-based fall detection algorithms on real-world falls. PLoS ONE 7: e37062
+
+\bibitem{C. Rougier}
+C. Rougier, J. Meunier, A. St-Arnaud, and J. Rousseau, “Robust video surveillance for fall detection based on human shape deformation,” IEEE Transactions on Circuits and Systems for Video Technology, vol. 21, no. 5, pp. 611–622, 2011
+
+\bibitem{Abnormal gait Behaviour}
+ Abnormal Gait Behavior Detection for Elderly Based on Enhanced Wigner-Ville Analysis and Cloud Incremental SVM Learning
+ 
+\bibitem{Chun zhu}
+
+Human Daily Activity Recognition in Robot-assisted Living Using Multi-sensor Fusion
+Chun Zhu and Weihua Sheng,School of Electrical and Computer Engineering
+Oklahoma State University Stillwater, OK, 74078
+
+
+\bibitem{K. Sagawa}
+K. Sagawa, T. Ishihara, A. Ina, and H. Inooka. Classification of human moving patterns using air pressure and acceleration. Industrial Electronics Society, 1998. IECON ’98. Proceedings of the 24th Annual Conference of the IEEE, 2:1214 – 1219, 1998.
+
+\bibitem{Carlos Medrano}
+Detecting Falls as Novelties in Acceleration Patterns Acquired with Smartphones
+Carlos Medrano ,Raul Igual, Inmaculada Plaza,Manuel Castro
+
+\bibitem{Jingyuan Cheng}
+Active Capacitive Sensing: Exploring a New Wearable Sensing Modality for Activity Recognition Jingyuan Cheng, Oliver Amft, and Paul Lukowicz
+
+\bibitem{J. Y Yang}
+J.-Y. Yang, J.-S. Wang, and Y.-P. Chen, “Using acceleration mea-
+surements for activity recognition: An effective learning algorithm for
+constructing neural classifiers,” Pattern recognition letters, vol. 29,
+no. 16, pp. 2213–2220, 2008.
+
+\bibitem{Jian} 
+
+Abnormal Gait Behavior Detection for Elderly Based on Enhanced Wigner-Ville Analysis and Cloud Incremental SVM Learning
+Jian Luo, Jin Tang,and Xiaoming Xiao1
+Journal of Sensors Volume 2016 (2016), Article ID 5869238, 18 pages
+http://dx.doi.org/10.1155/2016/5869238
+
+
+\bibitem{Chun Zhu}
+
+Human Daily Activity Recognition in Robot-assisted Living Using Multi-sensor Fusion
+Chun Zhu and Weihua Sheng
+School of Electrical and Computer Engineering Oklahoma State University
+Stillwater, OK, 74078
+
+
+\bibitem{Sagawa}
+
+K. Sagawa, T. Ishihara, A. Ina, and H. Inooka. Classification of human moving patterns using air pressure and acceleration. Industrial Electronics Society, 1998. IECON ’98. Proceedings of the 24th Annual Conference of the IEEE, 2:1214 – 1219, 1998.
+
+
+\bibitem{Jingyuan}
+Active Capacitive Sensing: Exploring a New Wearable Sensing Modality for Activity Recognition. Jingyuan Cheng1, Oliver Amft2, and Paul Lukowicz1
+
+
+\bibitem{J.Y. Yang}
+J.-Y. Yang, J.-S. Wang, and Y.-P. Chen, “Using acceleration measurements for activity recognition: An effective learning algorithm for constructing neural classifiers, Pattern recognition letters, vol. 29,no. 16, pp. 2213–2220, 2008.
+
+\bibitem{Carlos Medrano}
+Detecting Falls as Novelties in Acceleration Patterns Acquired with Smartphones
+Carlos Medrano 1,2 *, Raul Igual 2 , Inmaculada Plaza 2 , Manuel Castro 3
+
+
+\bibitem{Harrou F}
+Harrou F, Zerrouki N, Sun Y, Houacine A (2016) A simple strategy for fall events detection. 2016 IEEE 14th International Conference on Industrial Informatics
+(INDIN). Available:http://dx.doi.org/10.1109/INDIN.2016.7819182.
+
+
+\bibitem{Mubashir}
+A survey on fall detection: Principles and approaches Muhammad Mubashir, Ling Shao n , Luke Seed Department of Electronic and Electrical Engineering, The University of Sheffield, UK
+
+\bibitem{N.Noury}
+N. Noury, T. Herd, V. Rialle, G. Virone, E. Mercier, G. Morey, A. Moro,T. Porcheron, Monitoring Behaviour in Home Using a Smart Fall Sensor and Position Sensors, 1st Annual International Conference On Micro Technologies in Medicine and Biology, pp. 607–610, 2000.
+
+\bibitem{Paolo}
+Monitoring elderly behavior via indoor position based stigmergy.
+Paolo Barsocchi, Mario G.C.A. Cimino b, Erina Ferro a , Alessandro Lazzeri b ,
+Filippo Palumbo a,c , Gigliola Vaglini b
+
+\bibitem{Allesandra}
+
+Alessandra	Moschetti, Laura Fiorini, Dario Esposito.
+Toward an Unsupervised Approach for Daily Gesture Recognition in Assisted Living Applications
+
+\bibitem{Diego}
+Probabilistic Human Daily Activity Recognition towards Robot-assisted Living
+Diego R. Faria, Mario Vieira, Cristiano Premebida and Urbano Nunes
+
+\bibitem{Pubali}
+Recognition of Human Behavior for Assisted Living Using Dictionary Learning Approach
+Pubali De , Amitava Chatterjee, Senior Member, IEEE, and Anjan Rakshit	
+	
+\end{thebibliography}
+ 
+
+\end{document}

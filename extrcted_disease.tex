@@ -1,0 +1,206 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Nine-th report submitted on 4-June-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+\section*{Method and Technique (Diseases Detection)}
+ 
+Although none of the existing technique has explore the use of smart cane been proposed here to detect anomalies in ADL, this novelty has introduced a new dimension in to this field as cane or walking stick is a natural aids for ambulating among the elderly and disable, we presume this will be more convenient and more comfortable for the users compare to the wearable devices which may be intrusive and awkward. The system is composed of perception layer, Data collection and storage layer, smart learning platform, and Intervention layer. Fig [1] depicts the block diagram of the proposed system.
+%\newpage
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{block_diagram.png}
+		
+	\caption{Image Show the block diagram of our approach.}
+	
+\end{figure}
+
+
+\subsubsection*{Perception Layer:}
+
+This layer represent the genesis of the whole system, it comprises of accelerometer, GSM, GPS and gyroscope, Accelerometry provide detailed information on physical activities and inactivity and this information can be used to measure more comprehensive relationships among movement frequency, intensity and duration, it can also measure vibration intensity. GSM and GPS is used to monitored the location of the user in case of emergency while the gyroscope will be used to measure orientation in addition to that it also aid to put the accelerometer to sleep when the cane is on pause mode and activate it when pick up again, data gathered by the cane will stored in the storage layer for analysis.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{cane1.jpg}
+	
+	\caption{Image show the Cane with device attached }
+	
+\end{figure}
+
+
+
+\subsubsection*{Storage layer:} Data generated by the perception layer will be stored here and preliminary process like filtering and feature extraction will be done here before been transferred to the smart learning platform which will learn and classify each different activity, data receive by the storage include:
+
+\textbf{Activities Data:} is a set activities that are trigger when the user takes the cane, and it stop when the user put the cane down, data in this categories include 
+
+
+\begin{itemize}
+	
+	\item   activity begin time
+	
+	\item  activity end time
+	
+	\item   number of steps	
+	
+\end{itemize}
+
+\textbf{Pauses:} this is sub-activity that happen when no step has been detected for 15 seconds, it automatically stops when a step is detected data in this categories include 
+\begin{itemize}
+	
+	\item   Pause begin time
+	
+	\item   Pause end time	
+	
+\end{itemize}
+
+\textbf{Alerts:} this may be trigged by the occurrence of accidental fall when this occur the cane vibrates and the user has up to 15 seconds to cancel it by picking it up else it will be reported as fall,  data in this categories include
+
+\begin{itemize}
+	\item   Fall time
+	
+	\item   Fall alert(false when cancel otherwise true)
+\end{itemize}
+\textbf{Ambulatory Pattern data:} Walking pattern will be collected and stored here this will include but not limited to slow ambulation, extreme slowness in walking, walking and stopping which might be as a results of tiredness, arm shaking and vibrations, adequate learning of this pattern will be useful for the prediction of impeding ailments of the user’s. 
+
+\subsubsection*{Filtering and Noise Removal:} Filtering and noise elimination is a fundamental part of this work; noise may interfere and corrupt the final results. A low pass filter is used here due to its efficiency in removing small amount of high frequency noise and Computation simplicity, it passes low-frequency and reduces the amplitude of frequencies higher than the cutoff frequency.
+
+
+\[y_{(i)} = \sum_{i =1}^{n}y_i-1 * \alpha(x_i-y_i)\]
+
+\[0 < \alpha< 1.\]
+
+ \begin{figure}
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=\linewidth]{not_filter.png}
+ 		\caption{Signal before Filtering }
+ 		\label{fig:sub1}
+ 	\end{subfigure}
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=\linewidth]{after_filt.png}
+ 		\caption{Signal After Filtering}
+ 		\label{fig:sub2}
+ 	\end{subfigure}
+ 	
+ 	\caption{Image (a) show the raw Signal Before Low Pass Filtering, Image (b) Shows Signal After Filtering.}
+ 	
+ \end{figure}
+\textbf{Feature Extraction:} Signal Magnitude Area (SMA) can be used as a measure for differentiating between static and dynamic activities with the use of all three axis in the accelerometer signals, we achieve this by computing the sum of the norm of individual axis.  
+
+\[SMA = \sum_{i =1}^{n}{(|X_{(i)}|)} + {(|Y_{(i)}|)} + {(|Z_{(i)}|)}\]
+
+\textbf{Energy Feature:} The set of feature extracted here are use to  discriminate between different  types of activities such as walking, pausing, shaking, and can also used to identify the rate of velocity during ambulation such as fast walking, slow walking and extreme slowness in ambulation, we compute the short time Fourier transform (STFT) using the energy absorption.
+
+
+\[X_i{[k]} = \sum_{n = -\frac{N}{2}}^{\dfrac{N}{2-1}}{w{[n]X}}  {[n + l H]e} ^{-j2\pi\dfrac{kn}{N}}\]
+
+\[w = analysis\ window \]
+\[l = frame\ number\]
+\[H = hop- Size\]
+
+
+\end{document}

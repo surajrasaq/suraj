@@ -1,0 +1,215 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	\textsc{\LARGE University of Lyon/University Jean Monnet}\\[1.5cm] % University of Lyon/University Jean Monnet
+	\textsc{\Large Master in Machine Learning and Data Mining}\\[0.5cm] % Master In Machine Learning And Data Mining.
+	%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{Author:}\\
+				Surajudeen \textsc{Abdulrasaq} % Your name
+			\end{flushleft}
+		\end{minipage}
+		~
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushright} \large
+				\emph{Supervisor:} \\
+				Fabrice  \textsc{Muhlenbach} % Supervisor's Name
+			\end{flushright}
+		\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Second report submitted on 04-May-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{Review literature based on existing study}
+ 
+Several study have been carried out in order to segregate what’s can be termed normal and abnormal behavior among the older citizen, most of this studies are based on heuristic analysis discriminative and generative methods are also been used and they may be combined for better classification. however some of this method are not so comfortable to the users because they are made to wear various sensor on their body including neck, wrist, waist and even foot, a vision based approach might be intrusive on the privacy of the user and the fact that cameras are not suitable for bathroom even complicate the uses of this method, moreover some of this method are majorly based on falls detection which at times report more false positive which lead to mistrust of this devices among the caregivers and relatives, following are some of the existing method and technique adopted in learning the activities of daily living of the elderly people.
+
+\textbf{Wagner file analysis} [8], A cloud based health care system is proposed in this paper for the elderly using an incremental SVM (CI-SVM) learning with tri-axial acceleration sensor embedded a to capture the movement and ambulation information of elderly. The collected signals are first enhanced by a Kalman filter. And the magnitude of signal vector features is then extracted and decomposed into a linear combination of enhanced Gabor atoms. The Wigner-Ville analysis method is introduced and the problem is studied by joint time-frequency analysis. The original abnormal behavior data are first used to get the initial SVM classifier. And the larger abnormal behavior data of elderly collected by mobile devices are then gathered in cloud platform to conduct incremental training and get the new SVM classifier. By the CI-SVM learning method, the knowledge of SVM classifier could be accumulated due to the dynamic incremental learning. 
+%\newpage
+
+
+\textbf{Activity recognition} using fusion of multi-sensor was adopted by [9].  Two sensors are fused for coarse-grained classification in order to determine the type of the activity: zero displacement activity, transitional activity, and strong displacement activity. Second, a fine-grained classification module based on heuristic discrimination or hidden Markov models (HMMs) is applied to further distinguish the activities. Slight change of air pressure was used to detect vertical movements [10] and classification was achieved by using one acceleration sensor and one air pressure sensor attached on the waist used to detect the moving styles of going up/down the stairs or in an elevator. 
+
+[11] \textbf{Uses conductive textile based electrodes} that are integrated in to wearable garments, capacitance change inside the human body was measured, and such changes are interrelated to motions and shape changes of muscle, skin, and other tissue, which can in turn be related to a broad range of activities and physiological parameters. Activities such as chewing, swallowing, speaking, sighing (taking a deep breath), as well as different head motions and positions was learned.
+
+\textbf{Artificial Neural Networks} (ANNs) in conjunction with a simple kinematics model was used by [12] to detect different postural transitions (PTs) and walking periods during daily physical activity.  Inter-connected neurons are capable of automatic learning based on experience and approximating non-linear combinations of features for pattern recognition. [23] Utilize the infrared (IR) motion sensors to assist the independent living of the elderly who live alone and to improve the efficiency of their health care. An IR motion-sensor-based activity-monitoring system was installed in the houses of the elderly and used to collect motion signals and three different feature values, activity level, mobility level, and nonresponsive interval.
+
+
+\textbf{
+Medrano et al} [13] try out the use of a machine learning technique based on one-class classifier that has only been trained on ADL to detect falls as anomalies with respect to ADL. In particular, their experimentation was conducted with a k-Nearest Neighbor (kNN) classifier. Although they conducted their studies on simulated data by volunteers this participant simulated about eight different type of falls (forward falls, backward falls, left and right-lateral falls, syncope, sitting on empty chair, falls using compensation strategies to prevent the impact and falls with contact to an obstacle before hitting the ground.) using smart phone embedded with accelerometer and then try to learn one-class kNN and subsequently they try to evaluate their model two-classes Support Vector Machine (SVM) with a promising results, however they conclude that accelerometer provides detailed information on behavior such as physical activity and inactivity. 
+
+This information can be used to measure more comprehensive relationships among movement frequency, intensity and duration , but anomaly detection is not visible this conclusion might not be entirely correct because SVM is an highly computational demanding model during training which cannot be met using mobile phones with limited computation power, also smart phones are not design for safety applications.
+
+[14] The paper tries to address fall from statistical point of view as an anomaly detection problem. Specifically, the paper investigates the multivariate exponentially weighted moving average (MEWMA) control chart to detect fall events. This approach is based on visual monitoring, where they used image processing scheme to detect fall and trigger alert. Here they completed treat falls as binary where anomaly occurs at the moment of the fall. When a person falls, a fall detection system would declare it as abnormal action. Ling Shao et al [15], categorize falls in to falls from walking or standing, falls from Standing on supports, e.g., ladders etc., falls from sleeping or lying in the bed and falls from sitting on a chair, but if we are to follow this classification then the focus of this studies will be on the first two since we are dealing majorly with ambulation as a sub-set of ADL.
+
+\textbf{Noury et al} [16], designed a smart fall sensor, the software application transmits the data remotely through the network as well as exploiting data locally. The data are further analyzed to determine the current state such as lying after a fall, sleeping, walking, etc. [17] Nyan et al.  Distinguished backward and sideway falls from normal activities using gyroscopes (angular rate sensors). The gyroscopes are securely placed on different positions, such as underarm and waist. This angular rate is measured for normal activities and falls in lateral body planes. A high speed camera is used to capture video image sequences of motion for body configuration analysis in the event of a fall. High speed cameras have the frame rate of 250 frames per second. The fusion of high speed camera images and gyroscope data is synchronized. Gyroscopes rely on the idea of acceleration thresholds to differentiate fall events from normal activities.
+
+
+\textbf{Marker-based stigmergy} [18], can be employed by exploiting both spatial and temporal dynamics because of it’s intrinsically embodies by the time domain. Moreover, the provided mapping is not explicitly modeled at design-time and then it is not directly interpretable which offers a kind of information blurring of the human data, and can be enhanced to solve privacy issues being experience in some model. Furthermore, analog data provided by marker based stigmergy allows measurements with continuously changing qualities, suitable for multi-valued classification.
+\newpage
+\textbf{Alessandra Moschetti et al} [19] compare unsupervised and supervised methods in recognizing nine gestures by means of two inertial sensors placed on the index finger and on the wrist. Three supervised classification techniques, namely Random Forest, Support Vector Machine, and Multilayer Perceptron, as well as three unsupervised classification techniques, namely k-Means, Hierarchical Clustering, and Self-Organized Maps, were Compared in the recognition of gestures made by 20 subjects. The obtained results show that the Support Vector Machine classifier provided the best performances (0.94 accuracy) compared to the other supervised algorithms.
+
+\textbf{Faria et al} [20], uses probabilistic ensemble of classifiers (DBMM) with a local update of weights designed for activity recognition, their approach is based on confidence obtained from an uncertainty measure that assigns a weight for each base classifier to counterbalance the joint posterior probability.A dictionary learning algorithms K-singular value decomposition (K-SVD) is used to learn human activities [21] by exploring sparse signal representation.
+
+\newpage
+\begin{thebibliography}{9}
+	
+
+	
+\bibitem{Jian} 
+
+Abnormal Gait Behavior Detection for Elderly Based on Enhanced Wigner-Ville Analysis and Cloud Incremental SVM Learning
+Jian Luo, Jin Tang,and Xiaoming Xiao1
+Journal of Sensors Volume 2016 (2016), Article ID 5869238, 18 pages
+http://dx.doi.org/10.1155/2016/5869238
+
+
+\bibitem{Chun Zhu}
+
+Human Daily Activity Recognition in Robot-assisted Living Using Multi-sensor Fusion
+Chun Zhu and Weihua Sheng
+School of Electrical and Computer Engineering Oklahoma State University
+Stillwater, OK, 74078
+
+
+\bibitem{Sagawa}
+
+K. Sagawa, T. Ishihara, A. Ina, and H. Inooka. Classification of human moving patterns using air pressure and acceleration. Industrial Electronics Society, 1998. IECON ’98. Proceedings of the 24th Annual Conference of the IEEE, 2:1214 – 1219, 1998.
+
+
+\bibitem{Jingyuan}
+ Active Capacitive Sensing: Exploring a New Wearable Sensing Modality for Activity Recognition. Jingyuan Cheng1, Oliver Amft2, and Paul Lukowicz1
+
+
+\bibitem{J.Y. Yang}
+ J.-Y. Yang, J.-S. Wang, and Y.-P. Chen, “Using acceleration measurements for activity recognition: An effective learning algorithm for constructing neural classifiers, Pattern recognition letters, vol. 29,no. 16, pp. 2213–2220, 2008.
+
+\bibitem{Carlos Medrano}
+Detecting Falls as Novelties in Acceleration Patterns Acquired with Smartphones
+Carlos Medrano 1,2 *, Raul Igual 2 , Inmaculada Plaza 2 , Manuel Castro 3
+
+
+\bibitem{Harrou F}
+Harrou F, Zerrouki N, Sun Y, Houacine A (2016) A simple strategy for fall events detection. 2016 IEEE 14th International Conference on Industrial Informatics
+(INDIN). Available:http://dx.doi.org/10.1109/INDIN.2016.7819182.
+
+
+\bibitem{Mubashir}
+A survey on fall detection: Principles and approaches Muhammad Mubashir, Ling Shao n , Luke Seed Department of Electronic and Electrical Engineering, The University of Sheffield, UK
+
+\bibitem{N.Noury}
+N. Noury, T. Herd, V. Rialle, G. Virone, E. Mercier, G. Morey, A. Moro,T. Porcheron, Monitoring Behaviour in Home Using a Smart Fall Sensor and Position Sensors, 1st Annual International Conference On Micro Technologies in Medicine and Biology, pp. 607–610, 2000.
+
+\bibitem{Paolo}
+Monitoring elderly behavior via indoor position based stigmergy.
+Paolo Barsocchi, Mario G.C.A. Cimino b, Erina Ferro a , Alessandro Lazzeri b ,
+Filippo Palumbo a,c , Gigliola Vaglini b
+ 
+\bibitem{Allesandra}
+
+Alessandra	Moschetti, Laura Fiorini, Dario Esposito.
+Toward an Unsupervised Approach for Daily Gesture Recognition in Assisted Living Applications
+
+\bibitem{Diego}
+Probabilistic Human Daily Activity Recognition towards Robot-assisted Living
+Diego R. Faria, Mario Vieira, Cristiano Premebida and Urbano Nunes
+
+\bibitem{Pubali}
+Recognition of Human Behavior for Assisted Living Using Dictionary Learning Approach
+Pubali De , Amitava Chatterjee, Senior Member, IEEE, and Anjan Rakshit
+	
+	
+\end{thebibliography}
+ 
+
+\end{document}

@@ -1,0 +1,159 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Tenth report submitted on 11-June-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{Smart Learning Platform}
+ 
+ This will be an incessant learning environment which can learn based on individual daily ambulatory activities and if abnormal activities are detected a soft or strong alert will be activated and the intervention layers will be notified accordingly, a soft alert is activated if some unusual (but regarded as a learnt norm for the said individual) is detected for example a person who frequently drop the cane and pick it up again within the stipulated time frame. A strong alert is activated if the behavior is completely alien to the individual.
+
+Our approach has so many advantages over all other existing methods, first the non-intrusive nature of this method, users done need to wear any special bracelet or wrist monitoring, they only to pick up the cane when they need to ambulate which acts as the traditional and the usual aids for the old, weak and disable people right from time immemorial and the simplicity and adaptability to the user behavior which can be learned in both supervised and unsupervised ways.
+
+\subsubsection*{Classification using LDA}
+
+Linear Discriminant Analysis (LDA) is mainly commonly used as a dimensionality reduction procedure in the pre-processing step for pattern-classification and machine learning applications. The objective is to project a dataset onto a lower-dimensional space with good class-separability in order avoid overfitting (“curse of dimensionality”) and also reduce computational costs. LDA is a second order statistical approach and a supervised classification approach that utilizes the class specific information maximizing the ratio $j_{(w)}$ of the within and between class.
+
+\[j_{(w)} =\dfrac{w^TS_b w}{w^T S_w w}\]
+
+where $S_b$ and  $S_w$ are the between and the withing class respectively, they are computed as follow:
+
+\[S_b = \sum_{k =1}^{k} (m_k - m)N_k(m_k - m)^T\]
+
+\[S_w = \sum_{k =1}^{k} \sum_{n =1}^{N_k}(X_nk - m_k)(X_nk - m_k)^T\]
+
+where $N_k$ is the number of example in k-class and $X_nk$ is the $nth$ data in $kth$ class $m$ is the mean of the entire set and $m_k$ is the mean $kth$ class, Note that we can compute the Langrangian Dual and KKT by maximizing $j$ then we have
+
+\[S_w^{-1}S_b w = \lambda w\]
+
+\newpage
+
+\begin{figure}
+	
+	\centering
+	\includegraphics[width=\linewidth]{LDA_decision.png}
+	\caption{Show Linear Discriminant Analysis }
+	
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{LDA_decision_test_high.png}
+	\caption{ Shows Linear Discriminant Analysis With test data highlighted).}
+	
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{LDA_PCA_test.png}
+	\caption{ Shows Better Classification after dimension reduction with PCA.}
+	
+\end{figure}
+
+\end{document}

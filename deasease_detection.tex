@@ -1,0 +1,168 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Third report submitted on 30-April-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{Detecting diseases associated to ambulation}
+ 
+Inability to walk without hindrance also known as gait abnormality is one of the major sign of aging , this form of anomaly has been  categorized as one of five types based on the symptoms or appearance of an individual's walk [1]. They are spastic gate, scissors gait, step-page gait, waddling gait and propulsive gait. Studying these gait abnormality is imperative part of diagnosis that may afford us the required information about this neurological conditions. Gait abnormality may be due to musculoskeletal weakness, injury or genetic factors, on the other hand abnormal gait can also be the results of attack on the nervous system by diseases, some of the common diseases associated to abnormal gaits are.
+
+\textbf{Apraxia} is a neurological condition characterized by loss of the ability to perform activities that a person is physically able and willing to perform or the loss of ability to properly use the lower limbs in the act of walking, this is a walking disorders found in a subgroup of patients with Alzheimer’s disease [2]. Patients walk with slow and irregular steps and find it hard to negotiate turns, climb onto a stepping stool and most time they exhibit hesitating steps during movements, sometimes patients may find it difficult to speak or move arms or legs completely.
+
+\textbf{Parkinson} and Apraxia are closely related in symptom, Patients with frontal gait disorder at first look as though they have a parkinsonian gait, [3] with short, shuffling steps, poor balance, initiation failure, and hesitations on turns, the most glaring  symptoms associated to Parkinson  is shaking , Trembling in fingers, hands and arms.   In this gait, the patient will have rigidity and bradykinesia [6]. He or she will be deformed with the head and neck forward, with flexion at the knees. The whole upper extremity is also in flexion with the fingers usually extended. The patient walks with slow little steps known at marche a petits pas (walk of little steps). Patient may also have difficulty initiating steps. The patient may show an involuntary inclination to take accelerating steps, known as festination. This gait is seen in Parkinson's disease or any other condition causing Parkinsonism.
+
+\textbf{ Alzheimer} is another neurological disease that can be very devastating; the patient suffers from memory loss and may have trouble with comprehension of his or her environments which often lead to an un-necessary wandering in the neighborhood; gait apraxia might be developed in a long run and generally patients with Alzheimer’s disease are at increased risk of losing their balance [2]. although the major symptom of this disease is memory loss but most patients at the early stage may have show a sign of abnormality in gait and maybe misdiagnose as apraxia, presently there’s no effective cure of Alzheimer but early diagnosis can be very useful especially when gait abnormality is detected.
+
+\textbf{Arthritis} is a diseases and conditions that affect joints, including lupus and rheumatoid, the symptom might include fatigue, joint pain and general abnormality gait behavior, although arthritis is a very popular disease but not well understood because it might be the results or combination of several other diseases. Severe arthritis can result in chronic pain, inability to do daily activities and make it difficult to walk or climb stairs [4]. Arthritis can cause permanent joint changes and generally impaired ones ability to ambulate freely.
+
+\newpage
+\subsubsection*{Abnormality detection} Nutt et all[5] gave two conditions or abilities that are required for walking (1) equilibrium, the capacity to assume the upright posture and to maintain balance; and (2) locomotion, the ability to initiate and to maintain rhythmic stepping. These two conditions are separate but interrelated components of gait and when one or both of this condition is lacking then we can rightly conclude that the individual might be suffering from walking abnormality, detecting diseases related to gait abnormality with smart-cane might look trivial at first, but when we realize the facts that cane or walking stick has been used as an assistive device to aid in ambulating especially in the elderly and disable right from the time immemorial then embedding smart devices (that can learn ambulating pertain and detect anomaly associated to it) in to cane or other walking aids will help in early detection of this diseases and greatly reduced over dependent of the patients on caregivers.
+
+\textbf{Common Symptoms:}  Akinesia or slowness in ambulation is the symptom of most of the disease mention above, generally they often result in difficulty in movements, this difficulty is particularly noticeable in complex movements such as walking, patients are affected differently depending on the degree of the illness, using assistive devices such as canes, crouches and walker is a standard requirements for people suffering from abnormal gait diseases and  the facts is if we can adequately learn the pertain of ambulation of an individual we could detect the likelihood of this disease before getting to advanced stage and make adequate recommendation for the patient to visit a physician. Important pertain to be learn are slow ambulation, extreme slowness in walking, walking and stopping which might be as a results of tiredness, arm shaking and vibrations.
+
+\newpage
+\begin{thebibliography}{9}
+	
+
+	
+\bibitem{Medical news today} 
+
+Medical news today, available at https://www.medicalnewstoday.com/articles/320481.php
+
+
+
+\bibitem{Della}
+
+S Della Sala,H Spinnler2,A Venneri1
+Walking difficulties in patients with Alzheimer’s disease might originate from gait apraxia
+
+
+
+\bibitem{La maladies Parkinson}
+
+La maladies Parkinson, available at   http://www.franceparkinson.fr/la-maladie/causes/
+
+\bibitem{Arthritis foundation}
+
+Arthritis foundation, available at  https://www.arthritis.org/about-arthritis/understanding-arthritis/what-is-arthritis.php
+
+\bibitem{J.G. Nutt}
+
+J.G. Nutt, MD; C.D. Marsden, DSc; and P.D. Thompson, MD, Human walking and higher-level
+Gait disorders, particularly in the elderly, NEUROLOGY 1993;43:268-279
+
+
+\bibitem{stanford medicine} available at https://stanfordmedicine25.stanford.edu/the25/gait.html
+	
+	
+\end{thebibliography}
+ 
+
+\end{document}

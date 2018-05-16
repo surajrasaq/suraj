@@ -1,0 +1,151 @@
+\documentclass[a4paper, parskip=full]{scrartcl}
+%\documentclass[parskip=full]{scrartcl}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\date{}
+\usepackage{authblk}
+\graphicspath{{/home/suraj/Desktop/Novin/images/}}
+	
+
+
+
+\begin{document}
+	
+
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\center % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+%	\textsc{\LARGE University Name}\\[1.5cm] % Name of your university/college
+%	\textsc{\Large Major Heading}\\[0.5cm] % Major heading such as course name
+%	\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Developing Anomaly detection for elderly people Oriented IoT Devices}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Surajudeen \textsc{Abdulrasaq} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Jérémie  \textsc{BENNEGENT} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%	\Large \emph{Author:}\\
+%	John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \ Fifth report submitted on 14-May-2018}\\[0.2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\includegraphics{orange-cane3.png}\\[0.2cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+
+
+
+
+
+ \section*{Data Pre-processing}
+ 
+Data preprocessing stage is a fundamental way that helps to transform the raw data in to meaningful format, this is necessary in order to aid the classifier to learn efficiently and perform accurate prediction, raw data are most time deficient and unpredictable with unreliable feature that may influence or mislead the classifier. I have decided to use Principal Component Analysis to aid in the pre-processing step before classification.
+
+\subsubsection*{Principal Component Analysis}
+
+Selecting the best feature and reducing the dimensionality to forestall the possibility of overfitting is a very important aspect of learning, Principal Component Analysis (PCA) is a very popular and effective method for achieving dimension reduction, in addition to this, PCA can help in speeding up the learning rate of a classifier. 
+
+PCA work by finding maximum variance for the whole data although for PCA to be efficient we need to first scale the feature in our dataset by setting the mean to zero and variance in to one known as standardization technique and it’s the property of a normal distribution. Using PCA for feature selection is completely un-supervised and it’s done by preserving the standard variation. Consequently we combine similar feature together and create a more meaningful and orthogonal superior attribute and this time in a lower dimension with no redundant information, in order to principal component analysis Lagrange multipliers for finding minimum and maximum value with eigenvalue and eigenvector are required as well. 
+
+
+Lets $x$ be a vector of random variable $ r $ such that transpose of $x$ is denoted by $x^T$ therefore, we can have $ x = [x_1,x_2,...x_r]^T$
+
+Now we need to find the a linear function of $x$ that can maximize the variance $\alpha_1^Tx$ where $\alpha_1$ is a vector of $r$ constant $\alpha_{11}, \alpha_{12},...\alpha_{1r}$, and $\alpha_1^Tx$ become
+
+\[\alpha_1^Tx = \alpha_{11}x_1 + \alpha_{12}x_2,...+...+\alpha_{11}x_r = \sum_{j =1}^{r}\alpha_{1j}{xj}\].
+ 
+%\newpage 
+%\subsubsection*{Visualization}
+ 
+ \begin{figure}
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=\linewidth]{feature_nopca.png}
+ 		\caption{Feature Space without PCA }
+ 		\label{fig:sub1}
+ 	\end{subfigure}
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=\linewidth]{pca_results.png}
+ 		\caption{Feature Space after PCA}
+ 		\label{fig:sub2}
+ 	\end{subfigure}
+ 	
+ 	\caption{Image (a) show the raw feature without correlation this might be mis-leading for any classifier, Image (b) Shows PCA combine similar feature together and create a more meaningful and orthogonal superior attribute.}
+ 	
+ 	\end{figure}
+
+\end{document}
